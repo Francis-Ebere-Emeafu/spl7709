@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India EV Revolution — A Microeconomics Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1a1612;--ink2:#4a443c;--ink3:#7a7268;
+    --cream:#faf7f2;--cream2:#f2ede4;
+    --accent:#c94a14;--accent2:#e8831a;
+    --green:#1d6b45;--blue:#184f8c;--gold:#c8861a;
+    --border:rgba(26,22,18,0.12);--border2:rgba(26,22,18,0.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#b7d8fd;color:var(--ink);line-height:1.7}
+  .page{max-width:980px;margin:0 auto;padding:0 24px 80px}
+
+  /* COVER var(--cream); */
+  .cover{min-height:340px;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 32px 56px;text-align:center;position:relative;overflow:hidden}
+  .cover::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(201,74,20,0.04) 0,rgba(201,74,20,0.04) 1px,transparent 1px,transparent 24px)}
+  .cover-tag{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:20px}
+  .cover h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);color:#fff;line-height:1.15;margin-bottom:12px;position:relative}
+  .cover h1 span{color:var(--accent2)}
+  .cover-sub{color:rgba(255,255,255,0.6);font-size:15px;max-width:560px;position:relative}
+  .cover-meta{display:flex;gap:32px;margin-top:36px;position:relative;flex-wrap:wrap;justify-content:center}
+  .cover-meta span{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.08em}
+  .cover-meta strong{color:rgba(255,255,255,0.85);display:block;font-size:13px}
+
+  /* SCENE */
+  .scene{padding:56px 0 0}
+  .scene-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+  .scene-num{font-family:'Playfair Display',serif;font-size:48px;color:var(--border);line-height:1;flex-shrink:0;width:56px;text-align:right}
+  .scene-meta{flex:1}
+  .scene-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);margin-bottom:4px}
+  .scene-concept{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+
+  /* DIALOGUE */
+  .dialogue{display:flex;flex-direction:column}
+  .line{display:flex;margin-bottom:0}
+  .line.riya .bubble{background:var(--cream2);border-left:3px solid #c94a14}
+  .line.arjun .bubble{background:#fff;border-left:3px solid #184f8c}
+  .line.arjun{flex-direction:row-reverse}
+  .line.arjun .bubble{border-left:none;border-right:3px solid #184f8c;text-align:right}
+  .speaker-col{width:88px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:18px}
+  .avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px}
+  .riya .avatar{background:#fde8df;color:var(--accent)}
+  .arjun .avatar{background:#dde8f5;color:var(--blue)}
+  .speaker-name{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3)}
+  .bubble{flex:1;padding:16px 20px;margin:8px 0;border-radius:0 8px 8px 0}
+  .line.arjun .bubble{border-radius:8px 0 0 8px}
+  .bubble p{font-size:14.5px;color:var(--ink2);line-height:1.72}
+  .bubble .highlight{background:rgba(201,74,20,0.1);padding:2px 6px;border-radius:4px;font-weight:500;color:var(--accent)}
+  .bubble .econ-term{font-style:italic;color:var(--blue);font-weight:500}
+  .line.arjun .bubble .econ-term{color:var(--green)}
+  .bubble .data{font-weight:600;color:var(--ink)}
+
+  /* VISUAL PANELS */
+  .visual-panel{margin:28px 0 8px;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .vp-header{padding:14px 20px 12px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px}
+  .vp-icon{width:22px;height:22px;background:var(--cream2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px}
+  .vp-title{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3)}
+  .vp-body{padding:20px}
+
+  /* PICTURE PANEL — full-bleed illustrations */
+  .picture-panel{margin:28px 0;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .picture-panel .vp-header{border-bottom:1px solid var(--border2)}
+  .picture-panel svg{display:block;width:100%}
+
+  /* TWO-COL PICTURE GRID */
+  .pic-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+  .pic-grid .picture-panel{margin:0}
+
+  /* STATS */
+  .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:20px 0}
+  .stat-box{background:var(--cream2);border-radius:8px;padding:14px 16px}
+  .stat-val{font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);line-height:1}
+  .stat-label{font-size:11px;color:var(--ink3);margin-top:4px}
+  .stat-box.accent{background:var(--accent)}.stat-box.accent .stat-val,.stat-box.accent .stat-label{color:#fff}
+  .stat-box.green{background:var(--green)}.stat-box.green .stat-val,.stat-box.green .stat-label{color:#fff}
+  .stat-box.blue{background:var(--blue)}.stat-box.blue .stat-val,.stat-box.blue .stat-label{color:#fff}
+
+  /* CONCEPT BOX */
+  .concept-box{margin:24px 0;padding:18px 22px;background:#f5f0e8;border-radius:10px;border-left:4px solid var(--gold)}
+  .concept-title{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:600}
+  .concept-text{font-size:13.5px;color:var(--ink2);line-height:1.65}
+
+  /* REFERENCES */
+  .references{margin-top:56px;padding-top:32px;border-top:2px solid var(--border)}
+  .references h2{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:20px}
+  .ref-list{display:flex;flex-direction:column;gap:8px}
+  .ref-item{display:flex;gap:12px;font-size:13px;color:var(--ink2)}
+  .ref-num{width:24px;flex-shrink:0;color:var(--accent);font-weight:600}
+  .ref-item a{color:var(--blue);word-break:break-all}
+
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  .interactive-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;display:block}
+
+  @media(max-width:600px){
+    .speaker-col{width:52px}.avatar{width:28px;height:28px;font-size:11px}
+    .bubble p{font-size:13.5px}.cover-meta{flex-direction:column;gap:10px}
+    .pic-grid{grid-template-columns:1fr}
+  }
+
+  /* PRINT / DOWNLOAD hint */
+  .download-bar{background:var(--ink);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;font-size:13px}
+  .download-bar a{color:var(--accent2);font-weight:600;text-decoration:none}
+  @media print{.download-bar{display:none}}
+</style>
+</head>
+<body>
+
+<div class="download-bar">
+  <!-- <span>India EV Revolution — Microeconomics Video Script &amp; Visual Guide</span> -->
+  <!-- <a href="#" onclick="window.print();return false">Print / Save as PDF</a> -->
+</div>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<div class="cover">
+  <div class="cover-tag">5-minute explainer video script with visuals for SPL7709 Assignment</div>
+  <h1>The <a href="#" onclick="window.print();return false" style="text-decoration: none;"><span>Electric Revolution</span></a><br>India Can't Afford to Miss</h1>
+  <p class="cover-sub">A microeconomics deep-dive into EV policy, demand, supply, competition and what it means for the common Indian — through the story of Ramesh</p>
+  <div class="cover-meta">
+    <div><strong>Emeafu Francis E. - 2025PPZ8427</strong><span>Policy lens - Narrator</span></div>
+    <div><strong>Chioma Favour E.- 2025PPM4526</strong><span>Economics lens - Narrator</span></div>
+    <div><strong>5 minutes Video</strong><span>Screen time · 8 scenes</span></div>
+    <div><strong>16 concepts</strong><span>Microeconomics covered</span></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══════════════ SCENE 1 ═══════════════ -->
+<div class="scene">
+  <div class="scene-header">
+    <div class="scene-num">1</div>
+    <div class="scene-meta">
+      <div class="scene-concept">Microeconomics Concept · Scarcity &amp; Opportunity Cost</div>
+      <div class="scene-title">Meet Ramesh — The Common Man's Dilemma</div>
+    </div>
+  </div>
+
+  <!-- ILLUSTRATION: Ramesh on his scooter at a petrol pump -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">🎬</div><div class="vp-title">Opening Scene — Ramesh at the Petrol Pump, Pune</div></div>
+    <svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sky -->
+      <rect width="960" height="340" fill="#e8f4fd"/>
+      <!-- Road -->
+      <rect x="0" y="240" width="960" height="100" fill="#5a5a5a"/>
+      <rect x="0" y="238" width="960" height="6" fill="#7a7a7a"/>
+      <!-- Road markings -->
+      <rect x="80" y="270" width="60" height="8" rx="2" fill="#e8e0c0" opacity="0.6"/>
+      <rect x="220" y="270" width="60" height="8" rx="2" fill="#e8e0c0" opacity="0.6"/>
+      <rect x="360" y="270" width="60" height="8" rx="2" fill="#e8e0c0" opacity="0.6"/>
+      <rect x="500" y="270" width="60" height="8" rx="2" fill="#e8e0c0" opacity="0.6"/>
+      <rect x="640" y="270" width="60" height="8" rx="2" fill="#e8e0c0" opacity="0.6"/>
+      <rect x="780" y="270" width="60" height="8" rx="2" fill="#e8e0c0" opacity="0.6"/>
+      <!-- Background buildings -->
+      <rect x="600" y="120" width="80" height="120" fill="#c4b8a8"/>
+      <rect x="620" y="100" width="40" height="125" fill="#d0c4b4"/>
+      <rect x="700" y="140" width="60" height="100" fill="#b8c4a8"/>
+      <rect x="750" y="130" width="50" height="110" fill="#c8bca4"/>
+      <rect x="820" y="150" width="90" height="90" fill="#b4b0a8"/>
+      <!-- Building windows -->
+      <rect x="610" y="130" width="12" height="10" rx="1" fill="#7a9ab8" opacity="0.7"/>
+      <rect x="630" y="130" width="12" height="10" rx="1" fill="#7a9ab8" opacity="0.7"/>
+      <rect x="650" y="130" width="12" height="10" rx="1" fill="#9ab87a" opacity="0.5"/>
+      <rect x="610" y="150" width="12" height="10" rx="1" fill="#f4d03f" opacity="0.6"/>
+      <rect x="630" y="150" width="12" height="10" rx="1" fill="#7a9ab8" opacity="0.7"/>
+      <rect x="710" y="155" width="10" height="9" rx="1" fill="#7a9ab8" opacity="0.6"/>
+      <rect x="725" y="155" width="10" height="9" rx="1" fill="#f4d03f" opacity="0.5"/>
+      <rect x="710" y="170" width="10" height="9" rx="1" fill="#7a9ab8" opacity="0.6"/>
+      <!-- Petrol pump structure -->
+      <rect x="300" y="110" width="180" height="130" rx="4" fill="#e0d8c8"/>
+      <rect x="300" y="108" width="180" height="16" rx="4" fill="#c94a14"/>
+      <text x="390" y="122" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">PETROL PUMP</text>
+      <!-- Pump units -->
+      <rect x="320" y="148" width="44" height="84" rx="6" fill="#d0c8b8"/>
+      <rect x="320" y="148" width="44" height="24" rx="6" fill="#a8a098"/>
+      <text x="342" y="164" text-anchor="middle" font-size="9" fill="#fff" font-family="DM Sans,sans-serif">₹103/L</text>
+      <rect x="330" y="178" width="24" height="36" rx="3" fill="#888"/>
+      <!-- Pump 2 -->
+      <rect x="416" y="148" width="44" height="84" rx="6" fill="#d0c8b8"/>
+      <rect x="416" y="148" width="44" height="24" rx="6" fill="#a8a098"/>
+      <text x="438" y="164" text-anchor="middle" font-size="9" fill="#fff" font-family="DM Sans,sans-serif">₹103/L</text>
+      <rect x="426" y="178" width="24" height="36" rx="3" fill="#888"/>
+      <!-- Fuel hose -->
+      <path d="M344 200 Q360 230 380 238" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- SCOOTER (petrol, worn) -->
+      <!-- Body -->
+      <ellipse cx="185" cy="228" rx="52" ry="16" fill="#c94a14" opacity="0.85"/>
+      <!-- Seat -->
+      <rect x="152" y="212" width="50" height="12" rx="5" fill="#333"/>
+      <!-- Handlebar -->
+      <rect x="205" y="204" width="6" height="22" rx="3" fill="#555"/>
+      <rect x="199" y="202" width="18" height="5" rx="2" fill="#444"/>
+      <!-- Wheel front -->
+      <circle cx="225" cy="240" r="18" fill="#333"/>
+      <circle cx="225" cy="240" r="10" fill="#555"/>
+      <circle cx="225" cy="240" r="4" fill="#888"/>
+      <!-- Wheel back -->
+      <circle cx="148" cy="240" r="18" fill="#333"/>
+      <circle cx="148" cy="240" r="10" fill="#555"/>
+      <circle cx="148" cy="240" r="4" fill="#888"/>
+      <!-- Exhaust fumes -->
+      <circle cx="128" cy="228" r="6" fill="#888" opacity="0.35"/>
+      <circle cx="114" cy="222" r="8" fill="#888" opacity="0.25"/>
+      <circle cx="98" cy="214" r="10" fill="#888" opacity="0.15"/>
+      <circle cx="80" cy="205" r="12" fill="#888" opacity="0.1"/>
+
+      <!-- RAMESH figure on scooter -->
+      <!-- Body -->
+      <rect x="162" y="194" width="24" height="28" rx="4" fill="#e67e22"/>
+      <!-- Head -->
+      <circle cx="174" cy="188" r="13" fill="#d4a574"/>
+      <!-- Helmet -->
+      <path d="M162 186 Q163 172 174 170 Q185 172 186 186 Z" fill="#1a5276"/>
+      <!-- Face expression (worried) -->
+      <circle cx="169" cy="188" r="2" fill="#5a3010"/>
+      <circle cx="179" cy="188" r="2" fill="#5a3010"/>
+      <path d="M169 196 Q174 193 179 196" fill="none" stroke="#5a3010" stroke-width="1.5"/>
+      <!-- Arms -->
+      <rect x="185" y="199" width="22" height="6" rx="3" fill="#d4a574"/>
+      <!-- Legs -->
+      <rect x="168" y="220" width="10" height="16" rx="3" fill="#2c3e50"/>
+      <rect x="180" y="220" width="10" height="16" rx="3" fill="#2c3e50"/>
+
+      <!-- PRICE DISPLAY bubble -->
+      <rect x="30" y="130" width="190" height="90" rx="10" fill="#fff" stroke="#c94a14" stroke-width="1.5"/>
+      <text x="125" y="152" text-anchor="middle" font-size="11" fill="#7a7268" font-family="DM Sans,sans-serif">Monthly fuel cost</text>
+      <text x="125" y="180" text-anchor="middle" font-size="32" fill="#c94a14" font-family="Playfair Display,serif" font-weight="700">₹4,500</text>
+      <text x="125" y="200" text-anchor="middle" font-size="11" fill="#7a7268" font-family="DM Sans,sans-serif">= 22% of monthly income</text>
+      <!-- Arrow from bubble to Ramesh -->
+      <path d="M215 175 Q240 185 190 208" fill="none" stroke="#c94a14" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowR)"/>
+
+      <!-- Thought bubble from Ramesh -->
+      <circle cx="250" cy="145" r="5" fill="#fff" stroke="#184f8c" stroke-width="1"/>
+      <circle cx="262" cy="132" r="8" fill="#fff" stroke="#184f8c" stroke-width="1"/>
+      <circle cx="278" cy="118" r="12" fill="#fff" stroke="#184f8c" stroke-width="1"/>
+      <rect x="278" y="80" width="130" height="70" rx="10" fill="#fff" stroke="#184f8c" stroke-width="1.5"/>
+      <text x="343" y="104" text-anchor="middle" font-size="10" fill="#4a443c" font-family="DM Sans,sans-serif">School fees: ₹2,000</text>
+      <text x="343" y="120" text-anchor="middle" font-size="10" fill="#4a443c" font-family="DM Sans,sans-serif">Doctor visit: ₹800</text>
+      <text x="343" y="136" text-anchor="middle" font-size="10" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">Savings: ₹0 😔</text>
+      <text x="343" y="94" text-anchor="middle" font-size="9" fill="#c94a14" font-family="DM Sans,sans-serif" font-style="italic">If only petrol were cheaper…</text>
+
+      <!-- 280 MILLION label -->
+      <rect x="720" y="80" width="200" height="56" rx="8" fill="rgba(26,22,18,0.7)"/>
+      <text x="820" y="104" text-anchor="middle" font-size="13" fill="#e8831a" font-family="DM Sans,sans-serif" font-weight="600">280 Million</text>
+      <text x="820" y="122" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.8)" font-family="DM Sans,sans-serif">2-wheelers on Indian roads</text>
+
+      <defs>
+        <marker id="arrowR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#c94a14" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="dialogue">
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>Picture Ramesh, a delivery driver in Pune, filling his petrol scooter every three days. At ₹103 per litre and 35 km to the litre, he spends nearly <span class="data">₹4,500 a month</span> just on fuel. That's 22% of his income — gone before groceries.</p></div>
+    </div>
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>In economics, we call this an <span class="econ-term">opportunity cost</span>. Every rupee Ramesh spends on petrol is a rupee he cannot spend on his child's school fees or his wife's medical visit. Scarcity of income makes every choice painful.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>Now multiply Ramesh by <span class="data">280 million</span> two-wheelers on Indian roads. That is the scale of the fuel dependence problem — and the scale of the opportunity for electric vehicles.</p></div>
+    </div>
+  </div>
+
+  <!-- OPPORTUNITY COST VISUAL -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">💡</div><div class="vp-title">Opportunity Cost — Where Ramesh's ₹4,500 Actually Goes</div></div>
+    <svg viewBox="0 0 960 220" xmlns="http://www.w3.org/2000/svg">
+      <rect width="960" height="220" fill="#faf7f2"/>
+      <!-- Income bar -->
+      <text x="480" y="28" text-anchor="middle" font-size="13" fill="#4a443c" font-family="DM Sans,sans-serif" font-weight="600">Monthly Income = ₹20,000</text>
+      <rect x="60" y="40" width="840" height="36" rx="6" fill="#e0dbd4"/>
+      <!-- Fuel slice -->
+      <rect x="60" y="40" width="189" height="36" rx="6" fill="#c94a14"/>
+      <text x="154" y="63" text-anchor="middle" font-size="12" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">FUEL 22%</text>
+      <!-- Rent -->
+      <rect x="249" y="40" width="168" height="36" fill="#5a7ab8"/>
+      <text x="333" y="63" text-anchor="middle" font-size="12" fill="#fff" font-family="DM Sans,sans-serif">Rent 20%</text>
+      <!-- Food -->
+      <rect x="417" y="40" width="210" height="36" fill="#1d6b45"/>
+      <text x="522" y="63" text-anchor="middle" font-size="12" fill="#fff" font-family="DM Sans,sans-serif">Food &amp; groceries 25%</text>
+      <!-- Education -->
+      <rect x="627" y="40" width="126" height="36" fill="#c8861a"/>
+      <text x="690" y="63" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif">Education 15%</text>
+      <!-- Other -->
+      <rect x="753" y="40" width="147" height="36" rx="0 6 6 0" fill="#888"/>
+      <text x="826" y="63" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif">Other 18%</text>
+
+      <!-- IF EV label -->
+      <text x="480" y="118" text-anchor="middle" font-size="13" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">If Ramesh switches to EV — fuel cost drops to ~₹900/month (4.5%)</text>
+      <rect x="60" y="130" width="840" height="36" rx="6" fill="#e0dbd4"/>
+      <!-- Fuel slice EV -->
+      <rect x="60" y="130" width="38" height="36" rx="6" fill="#1d6b45"/>
+      <text x="79" y="153" text-anchor="middle" font-size="9" fill="#fff" font-family="DM Sans,sans-serif">4.5%</text>
+      <!-- Freed money -->
+      <rect x="98" y="130" width="148" height="36" fill="#d7f0e4" stroke="#1d6b45" stroke-width="1.5" stroke-dasharray="4 2"/>
+      <text x="172" y="153" text-anchor="middle" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">+₹3,600 freed!</text>
+      <!-- Rest same -->
+      <rect x="246" y="130" width="654" height="36" rx="0 6 6 0" fill="#d0cdc8"/>
+      <text x="573" y="153" text-anchor="middle" font-size="11" fill="#7a7268" font-family="DM Sans,sans-serif">Same spending as before</text>
+
+      <!-- Arrow between bars -->
+      <text x="480" y="110" text-anchor="middle" font-size="18" fill="#c94a14">↓</text>
+    </svg>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box accent"><div class="stat-val">₹103</div><div class="stat-label">Petrol per litre, 2025</div></div>
+    <div class="stat-box"><div class="stat-val">₹1–1.5</div><div class="stat-label">EV cost per km</div></div>
+    <div class="stat-box"><div class="stat-val">₹5.5</div><div class="stat-label">Petrol cost per km</div></div>
+    <div class="stat-box green"><div class="stat-val">73%</div><div class="stat-label">Running cost saving (EV)</div></div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">Economics Concept: Opportunity Cost</div>
+    <div class="concept-text">Opportunity cost is the value of the next-best alternative foregone when a choice is made. For Ramesh, spending ₹4,500/month on petrol means forgoing education, health, or savings. Policy that reduces his fuel bill effectively raises his real income without changing his wage.</div>
+  </div>
+</div>
+
+<!-- ═══════════════ SCENE 2 ═══════════════ -->
+<div class="scene">
+  <div class="scene-header">
+    <div class="scene-num">2</div>
+    <div class="scene-meta">
+      <div class="scene-concept">Microeconomics Concept · Demand, Price Elasticity &amp; Subsidies</div>
+      <div class="scene-title">Creating Demand — How the Government Nudged the Market</div>
+    </div>
+  </div>
+
+  <!-- PICTURE: Side by side petrol scooter vs EV with price tags -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">🛵</div><div class="vp-title">The Price Gap — Petrol Scooter vs Electric Scooter Before &amp; After Subsidy</div></div>
+    <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="960" height="300" fill="#f8f4ee"/>
+      <!-- VS divider -->
+      <line x1="480" y1="20" x2="480" y2="280" stroke="#e0dbd4" stroke-width="2" stroke-dasharray="6 4"/>
+      <circle cx="480" cy="150" r="22" fill="#1a1612"/>
+      <text x="480" y="155" text-anchor="middle" font-size="13" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">VS</text>
+
+      <!-- LEFT: PETROL SCOOTER -->
+      <text x="240" y="40" text-anchor="middle" font-size="14" fill="#c94a14" font-family="DM Sans,sans-serif" font-weight="600">PETROL SCOOTER</text>
+      <!-- Scooter body -->
+      <ellipse cx="240" cy="185" rx="65" ry="20" fill="#e8831a" opacity="0.85"/>
+      <rect x="192" y="165" width="64" height="16" rx="6" fill="#333"/>
+      <rect x="255" y="158" width="7" height="24" rx="3" fill="#555"/>
+      <rect x="248" y="156" width="20" height="6" rx="2" fill="#444"/>
+      <circle cx="280" cy="196" r="22" fill="#333"/>
+      <circle cx="280" cy="196" r="12" fill="#555"/>
+      <circle cx="280" cy="196" r="5" fill="#888"/>
+      <circle cx="198" cy="196" r="22" fill="#333"/>
+      <circle cx="198" cy="196" r="12" fill="#555"/>
+      <circle cx="198" cy="196" r="5" fill="#888"/>
+      <!-- Exhaust -->
+      <circle cx="178" cy="183" r="5" fill="#888" opacity="0.4"/>
+      <circle cx="165" cy="176" r="7" fill="#888" opacity="0.28"/>
+      <circle cx="150" cy="168" r="9" fill="#888" opacity="0.18"/>
+      <!-- Price tag -->
+      <rect x="148" y="60" width="184" height="72" rx="10" fill="#fff" stroke="#c94a14" stroke-width="2"/>
+      <text x="240" y="84" text-anchor="middle" font-size="11" fill="#7a7268" font-family="DM Sans,sans-serif">Showroom price</text>
+      <text x="240" y="112" text-anchor="middle" font-size="30" fill="#1a1612" font-family="Playfair Display,serif" font-weight="700">₹65,000</text>
+      <!-- Fuel can icon -->
+      <rect x="155" y="215" width="20" height="26" rx="3" fill="#c94a14"/>
+      <rect x="163" y="210" width="6" height="8" rx="1" fill="#a83010"/>
+      <text x="195" y="232" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Burns ₹5.5/km</text>
+
+      <!-- RIGHT: ELECTRIC SCOOTER -->
+      <text x="720" y="40" text-anchor="middle" font-size="14" fill="#184f8c" font-family="DM Sans,sans-serif" font-weight="600">ELECTRIC SCOOTER</text>
+      <!-- EV body (sleeker, blue) -->
+      <ellipse cx="720" cy="185" rx="65" ry="20" fill="#184f8c" opacity="0.85"/>
+      <rect x="672" y="165" width="64" height="16" rx="6" fill="#222"/>
+      <rect x="735" y="158" width="7" height="24" rx="3" fill="#333"/>
+      <rect x="728" y="156" width="20" height="6" rx="2" fill="#222"/>
+      <circle cx="760" cy="196" r="22" fill="#222"/>
+      <circle cx="760" cy="196" r="12" fill="#444"/>
+      <circle cx="760" cy="196" r="5" fill="#888"/>
+      <circle cx="678" cy="196" r="22" fill="#222"/>
+      <circle cx="678" cy="196" r="12" fill="#444"/>
+      <circle cx="678" cy="196" r="5" fill="#888"/>
+      <!-- No exhaust, clean -->
+      <text x="648" y="186" font-size="18" fill="#1d6b45" opacity="0.7">✓</text>
+      <text x="636" y="200" font-size="9" fill="#1d6b45" font-family="DM Sans,sans-serif">Zero emissions</text>
+      <!-- Battery indicator on EV -->
+      <rect x="695" y="168" width="30" height="10" rx="2" fill="#fff" stroke="#184f8c" stroke-width="1"/>
+      <rect x="697" y="170" width="22" height="6" rx="1" fill="#1d6b45"/>
+      <rect x="725" y="171" width="3" height="4" rx="1" fill="#184f8c"/>
+      <!-- Price tags: original + subsidy -->
+      <rect x="544" y="52" width="164" height="54" rx="8" fill="#fee" stroke="#c94a14" stroke-width="1.5"/>
+      <text x="626" y="72" text-anchor="middle" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">Before subsidy</text>
+      <text x="626" y="94" text-anchor="middle" font-size="24" fill="#7a7268" font-family="Playfair Display,serif" font-weight="700" text-decoration="line-through">₹1,20,000</text>
+      <!-- After subsidy -->
+      <rect x="628" y="52" width="180" height="78" rx="8" fill="#fff" stroke="#1d6b45" stroke-width="2"/>
+      <text x="718" y="72" text-anchor="middle" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">After FAME subsidy</text>
+      <text x="718" y="104" text-anchor="middle" font-size="30" fill="#1d6b45" font-family="Playfair Display,serif" font-weight="700">₹90,000</text>
+      <text x="718" y="120" text-anchor="middle" font-size="9" fill="#7a7268" font-family="DM Sans,sans-serif">govt reimbursed OEM ₹25–30k</text>
+      <!-- Lightning bolt / charge icon -->
+      <polygon points="645,215 637,230 643,228 635,248 650,230 643,232" fill="#e8831a"/>
+      <text x="672" y="232" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Only ₹1.5/km</text>
+
+      <!-- SAVINGS badge -->
+      <rect x="394" y="240" width="172" height="40" rx="8" fill="#1d6b45"/>
+      <text x="480" y="257" text-anchor="middle" font-size="12" fill="#fff" font-family="DM Sans,sans-serif">Annual saving on fuel:</text>
+      <text x="480" y="273" text-anchor="middle" font-size="13" fill="#fff" font-family="DM Sans,sans-serif" font-weight="700">₹48,000 per year</text>
+    </svg>
+  </div>
+
+  <div class="dialogue">
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>In 2019, a good electric scooter cost ₹1.2 lakh. A comparable petrol scooter: ₹65,000. For Ramesh, the <span class="econ-term">price differential</span> alone killed demand before a test ride even happened.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>Enter the government's <span class="highlight">FAME II scheme</span> — ₹11,500 crore — which directly subsidised buyers at point of sale, lowering the price Ramesh actually paid. Each rupee of subsidy triggered a market multiplier of <span class="data">9 to 21 times</span> in actual sales. Extraordinary policy efficiency.</p></div>
+    </div>
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>This is a <span class="econ-term">demand-side subsidy</span> — it shifts the demand curve right. But when subsidies were cut under EMPS 2024, sales slowed. That tells us EV demand is still <span class="econ-term">price-elastic</span> — the market hasn't reached self-sustaining tipping point yet.</p></div>
+    </div>
+  </div>
+
+  <!-- DEMAND CURVE DIAGRAM -->
+  <div class="visual-panel">
+    <div class="vp-header"><div class="vp-icon">📈</div><div class="vp-title">Demand Curve Shift — Effect of FAME II Subsidy on E-2W Market</div></div>
+    <div class="vp-body">
+      <svg width="100%" viewBox="0 0 680 300" role="img">
+        <title>Demand curve shift showing FAME II subsidy effect</title>
+        <desc>Two downward sloping demand curves: D1 pre-subsidy and D2 post-subsidy shifted right, supply curve intersects both showing lower price and higher quantity.</desc>
+        <defs><marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <line x1="80" y1="20" x2="80" y2="255" stroke="#1a1612" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <line x1="80" y1="255" x2="620" y2="255" stroke="#1a1612" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <text x="50" y="135" text-anchor="middle" font-size="12" fill="#4a443c" font-family="DM Sans,sans-serif" transform="rotate(-90,50,135)">Price (₹)</text>
+        <text x="350" y="280" text-anchor="middle" font-size="12" fill="#4a443c" font-family="DM Sans,sans-serif">Quantity of E-2Ws</text>
+        <!-- Supply -->
+        <line x1="120" y1="240" x2="540" y2="50" stroke="#1d6b45" stroke-width="2" stroke-linecap="round" fill="none" marker-end="url(#arr2)"/>
+        <text x="548" y="48" font-size="12" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">S</text>
+        <!-- D1 -->
+        <line x1="140" y1="55" x2="400" y2="235" stroke="#c94a14" stroke-width="2" stroke-dasharray="6 3" stroke-linecap="round" fill="none" marker-end="url(#arr2)"/>
+        <text x="404" y="238" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif" font-weight="600">D₁ (pre-FAME)</text>
+        <!-- D2 -->
+        <line x1="280" y1="55" x2="580" y2="248" stroke="#184f8c" stroke-width="2.5" stroke-linecap="round" fill="none" marker-end="url(#arr2)"/>
+        <text x="530" y="248" font-size="11" fill="#184f8c" font-family="DM Sans,sans-serif" font-weight="600">D₂ (with subsidy)</text>
+        <!-- E1 -->
+        <circle cx="262" cy="148" r="5" fill="#c94a14"/>
+        <!-- E2 -->
+        <circle cx="390" cy="108" r="5" fill="#184f8c"/>
+        <!-- Dotted lines E1 -->
+        <line x1="262" y1="148" x2="80" y2="148" stroke="#c94a14" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <line x1="262" y1="148" x2="262" y2="255" stroke="#c94a14" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <!-- Dotted lines E2 -->
+        <line x1="390" y1="108" x2="80" y2="108" stroke="#184f8c" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <line x1="390" y1="108" x2="390" y2="255" stroke="#184f8c" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <text x="72" y="152" text-anchor="end" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">P₁</text>
+        <text x="72" y="112" text-anchor="end" font-size="11" fill="#184f8c" font-family="DM Sans,sans-serif">P₂</text>
+        <text x="262" y="268" text-anchor="middle" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">Q₁</text>
+        <text x="390" y="268" text-anchor="middle" font-size="11" fill="#184f8c" font-family="DM Sans,sans-serif">Q₂</text>
+        <!-- Shift arrow -->
+        <path d="M360 140 L440 130" stroke="#e8831a" stroke-width="1.5" stroke-dasharray="5 3" fill="none" marker-end="url(#arr2)"/>
+        <text x="385" y="125" font-size="11" fill="#e8831a" font-family="DM Sans,sans-serif">Subsidy shifts D →</text>
+        <text x="275" y="144" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">E₁</text>
+        <text x="403" y="104" font-size="11" fill="#184f8c" font-family="DM Sans,sans-serif">E₂</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">Economics Concept: Price Elasticity of Demand</div>
+    <div class="concept-text">Price elasticity measures how much quantity demanded changes when price changes. EVs in India remain elastic — a 15% subsidy cut under EMPS 2024 caused measurable sales slowdown. As EV prices fall toward petrol-parity, demand will become inelastic. India is currently in the elastic transition phase.</div>
+  </div>
+</div>
+
+<!-- ═══════════════ SCENE 3 ═══════════════ -->
+<div class="scene">
+  <div class="scene-header">
+    <div class="scene-num">3</div>
+    <div class="scene-meta">
+      <div class="scene-concept">Microeconomics Concept · Supply-Side Incentives, Economies of Scale &amp; GST Tax Wedge</div>
+      <div class="scene-title">Building Supply — Making India the Factory Floor</div>
+    </div>
+  </div>
+
+  <!-- ILLUSTRATION: Factory + battery supply chain + GST comparison -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">🏭</div><div class="vp-title">Supply-Side Story — PLI Scheme, Battery Manufacturing &amp; GST Tax Wedge</div></div>
+    <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="960" height="300" fill="#eef5f0"/>
+
+      <!-- FACTORY LEFT -->
+      <rect x="40" y="80" width="200" height="160" rx="4" fill="#d0ccc4"/>
+      <rect x="40" y="60" width="200" height="26" rx="4" fill="#c94a14"/>
+      <text x="140" y="78" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">EV FACTORY — PLI Scheme</text>
+      <!-- Windows -->
+      <rect x="60" y="96" width="30" height="24" rx="2" fill="#a8c8e8"/>
+      <rect x="102" y="96" width="30" height="24" rx="2" fill="#a8c8e8"/>
+      <rect x="144" y="96" width="30" height="24" rx="2" fill="#a8c8e8"/>
+      <rect x="186" y="96" width="30" height="24" rx="2" fill="#a8c8e8"/>
+      <rect x="60" y="132" width="30" height="24" rx="2" fill="#a8c8e8"/>
+      <rect x="102" y="132" width="30" height="24" rx="2" fill="#a8c8e8"/>
+      <rect x="144" y="132" width="30" height="24" rx="2" fill="#a8c8e8"/>
+      <rect x="186" y="132" width="30" height="24" rx="2" fill="#a8c8e8"/>
+      <!-- Chimneys (clean — no smoke) -->
+      <rect x="80" y="50" width="16" height="34" rx="3" fill="#b0a898"/>
+      <rect x="140" y="44" width="16" height="40" rx="3" fill="#b0a898"/>
+      <rect x="194" y="55" width="14" height="30" rx="3" fill="#b0a898"/>
+      <!-- Green check: clean factory -->
+      <circle cx="200" cy="38" r="12" fill="#1d6b45"/>
+      <text x="200" y="43" text-anchor="middle" font-size="14" fill="#fff" font-family="sans-serif">✓</text>
+      <!-- Factory door -->
+      <rect x="114" y="196" width="52" height="44" rx="4" fill="#888"/>
+      <!-- PLI badge -->
+      <rect x="50" y="175" width="80" height="30" rx="6" fill="#1d6b45"/>
+      <text x="90" y="188" text-anchor="middle" font-size="10" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">PLI: ₹25,938 Cr</text>
+      <text x="90" y="199" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.8)" font-family="DM Sans,sans-serif">5-yr incentive</text>
+
+      <!-- BATTERY (centre) -->
+      <rect x="380" y="100" width="200" height="100" rx="10" fill="#fff" stroke="#184f8c" stroke-width="2"/>
+      <rect x="565" y="128" width="18" height="44" rx="4" fill="#184f8c"/>
+      <!-- Battery cells inside -->
+      <rect x="400" y="118" width="32" height="64" rx="4" fill="#1d6b45"/>
+      <rect x="440" y="118" width="32" height="64" rx="4" fill="#184f8c"/>
+      <rect x="480" y="118" width="32" height="64" rx="4" fill="#1d6b45"/>
+      <rect x="520" y="118" width="32" height="64" rx="4" fill="#184f8c"/>
+      <!-- Battery label -->
+      <text x="480" y="245" text-anchor="middle" font-size="13" fill="#184f8c" font-family="DM Sans,sans-serif" font-weight="600">Lithium-ion Battery Pack</text>
+      <text x="480" y="262" text-anchor="middle" font-size="11" fill="#7a7268" font-family="DM Sans,sans-serif">ACC scheme: 50 GWh domestic target</text>
+      <!-- Cost decline arrow -->
+      <text x="480" y="80" text-anchor="middle" font-size="12" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">Battery cost per kWh (global trend)</text>
+      <text x="380" y="72" text-anchor="start" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">$1,200 (2010)</text>
+      <text x="530" y="72" text-anchor="start" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif">$100 (2024)</text>
+      <path d="M376 66 Q430 56 540 64" fill="none" stroke="#c94a14" stroke-width="1.5" marker-end="url(#arrG)"/>
+
+      <!-- GST comparison RIGHT -->
+      <rect x="720" y="80" width="200" height="180" rx="8" fill="#fff" stroke="#border" stroke-width="1"/>
+      <text x="820" y="102" text-anchor="middle" font-size="12" fill="#1a1612" font-family="DM Sans,sans-serif" font-weight="600">GST Tax Wedge</text>
+      <!-- EV bar -->
+      <rect x="740" y="115" width="60" height="20" rx="3" fill="#1d6b45"/>
+      <text x="770" y="130" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">5%</text>
+      <text x="808" y="130" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif">Electric vehicle</text>
+      <!-- Petrol bar -->
+      <rect x="740" y="148" width="168" height="20" rx="3" fill="#c94a14"/>
+      <text x="824" y="163" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">28% + cess</text>
+      <text x="808" y="182" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">ICE vehicle (petrol)</text>
+      <!-- Charging GST -->
+      <rect x="740" y="195" width="40" height="20" rx="3" fill="#184f8c"/>
+      <text x="760" y="210" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif">5%</text>
+      <text x="785" y="210" font-size="10" fill="#184f8c" font-family="DM Sans,sans-serif">EV chargers (was 18%)</text>
+      <text x="820" y="245" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif" font-style="italic">Deliberate tax wedge to tilt</text>
+      <text x="820" y="257" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif" font-style="italic">the market toward EVs</text>
+
+      <!-- Arrows from factory to battery -->
+      <path d="M240 160 L378 150" fill="none" stroke="#1d6b45" stroke-width="2" marker-end="url(#arrG)"/>
+      <text x="310" y="145" text-anchor="middle" font-size="10" fill="#1d6b45" font-family="DM Sans,sans-serif">Produces</text>
+
+      <defs>
+        <marker id="arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#1d6b45" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="dialogue">
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>The <span class="highlight">PLI scheme</span> — ₹25,938 crore — subsidises domestic EV manufacturing, shifting the supply curve right. More EVs produced at every price level. As output scales, firms benefit from <span class="econ-term">economies of scale</span> — the average cost per unit falls with volume.</p></div>
+    </div>
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>Battery costs globally have dropped over <span class="data">90%</span> in a decade — from $1,200 per kWh in 2010 to under $100 today. That is pure economies of scale at work. India's ACC Battery Scheme targets <span class="data">50 GWh</span> of domestic cell production so we capture this learning curve at home.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>And the <span class="econ-term">GST tax wedge</span> is genius quiet policy: EVs taxed at just <span class="data">5%</span>, petrol cars at <span class="data">28% plus cess</span>. The government tilts relative prices without writing a single cheque — making the market itself do the heavy lifting.</p></div>
+    </div>
+  </div>
+
+  <!-- SUPPLY CURVE SHIFT -->
+  <div class="visual-panel">
+    <div class="vp-header"><div class="vp-icon">🏗️</div><div class="vp-title">Supply Curve Shift — PLI Scheme Lowers Production Cost</div></div>
+    <div class="vp-body">
+      <svg width="100%" viewBox="0 0 680 280" role="img">
+        <title>Supply curve shift diagram showing PLI scheme effect</title>
+        <defs><marker id="arr5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <line x1="80" y1="20" x2="80" y2="240" stroke="#1a1612" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <line x1="80" y1="240" x2="620" y2="240" stroke="#1a1612" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <text x="50" y="130" text-anchor="middle" font-size="12" fill="#4a443c" font-family="DM Sans,sans-serif" transform="rotate(-90,50,130)">Price (₹)</text>
+        <text x="350" y="265" text-anchor="middle" font-size="12" fill="#4a443c" font-family="DM Sans,sans-serif">Quantity Supplied / Sold</text>
+        <!-- Demand curve -->
+        <line x1="160" y1="40" x2="580" y2="220" stroke="#c94a14" stroke-width="2" stroke-linecap="round" fill="none" marker-end="url(#arr5)"/>
+        <text x="586" y="224" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif" font-weight="600">D</text>
+        <!-- S1 pre-PLI -->
+        <line x1="100" y1="220" x2="500" y2="40" stroke="#888" stroke-width="2" stroke-dasharray="6 3" stroke-linecap="round" fill="none" marker-end="url(#arr5)"/>
+        <text x="508" y="38" font-size="11" fill="#888" font-family="DM Sans,sans-serif" font-weight="600">S₁ (pre-PLI)</text>
+        <!-- S2 post-PLI -->
+        <line x1="200" y1="220" x2="600" y2="40" stroke="#1d6b45" stroke-width="2.5" stroke-linecap="round" fill="none" marker-end="url(#arr5)"/>
+        <text x="608" y="38" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">S₂ (PLI)</text>
+        <!-- E1 -->
+        <circle cx="310" cy="136" r="5" fill="#888"/>
+        <!-- E2 -->
+        <circle cx="400" cy="116" r="5" fill="#1d6b45"/>
+        <!-- Dotted lines -->
+        <line x1="310" y1="136" x2="80" y2="136" stroke="#888" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <line x1="310" y1="136" x2="310" y2="240" stroke="#888" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <line x1="400" y1="116" x2="80" y2="116" stroke="#1d6b45" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <line x1="400" y1="116" x2="400" y2="240" stroke="#1d6b45" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <text x="72" y="140" text-anchor="end" font-size="11" fill="#888" font-family="DM Sans,sans-serif">P₁</text>
+        <text x="72" y="120" text-anchor="end" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif">P₂↓</text>
+        <text x="310" y="252" text-anchor="middle" font-size="11" fill="#888" font-family="DM Sans,sans-serif">Q₁</text>
+        <text x="400" y="252" text-anchor="middle" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif">Q₂↑</text>
+        <path d="M430 128 L510 118" stroke="#e8831a" stroke-width="1.5" stroke-dasharray="5 3" fill="none" marker-end="url(#arr5)"/>
+        <text x="460" y="114" font-size="11" fill="#e8831a" font-family="DM Sans,sans-serif">PLI shifts S →</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SCENE 4 ═══════════════ -->
+<div class="scene">
+  <div class="scene-header">
+    <div class="scene-num">4</div>
+    <div class="scene-meta">
+      <div class="scene-concept">Microeconomics Concept · Market Structure — Oligopoly, Competition, Market Power</div>
+      <div class="scene-title">From One Player to Many — The Market Restructures</div>
+    </div>
+  </div>
+
+  <!-- MARKET STRUCTURE ILLUSTRATION -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">🏢</div><div class="vp-title">Market Structure Evolution — Dominant Firm (2022) → Oligopoly (2025)</div></div>
+    <svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+      <rect width="960" height="320" fill="#f8f6f2"/>
+      <!-- 2022 side -->
+      <text x="240" y="30" text-anchor="middle" font-size="14" fill="#c94a14" font-family="DM Sans,sans-serif" font-weight="600">2022 — Dominant Firm</text>
+      <!-- Giant Ola box -->
+      <rect x="100" y="50" width="280" height="180" rx="10" fill="#c94a14" opacity="0.9"/>
+      <text x="240" y="128" text-anchor="middle" font-size="22" fill="#fff" font-family="Playfair Display,serif" font-weight="700">OLA</text>
+      <text x="240" y="152" text-anchor="middle" font-size="14" fill="rgba(255,255,255,0.85)" font-family="DM Sans,sans-serif">35% market share</text>
+      <text x="240" y="172" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.7)" font-family="DM Sans,sans-serif">Dominant firm: sets price,</text>
+      <text x="240" y="188" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.7)" font-family="DM Sans,sans-serif">others follow</text>
+      <!-- Tiny others -->
+      <rect x="108" y="244" width="58" height="36" rx="6" fill="#ddd"/>
+      <text x="137" y="266" text-anchor="middle" font-size="9" fill="#666" font-family="DM Sans,sans-serif">TVS 12%</text>
+      <rect x="174" y="244" width="58" height="36" rx="6" fill="#ddd"/>
+      <text x="203" y="266" text-anchor="middle" font-size="9" fill="#666" font-family="DM Sans,sans-serif">Bajaj 10%</text>
+      <rect x="240" y="244" width="58" height="36" rx="6" fill="#ddd"/>
+      <text x="269" y="266" text-anchor="middle" font-size="9" fill="#666" font-family="DM Sans,sans-serif">Ather 10%</text>
+      <rect x="306" y="244" width="58" height="36" rx="6" fill="#ddd"/>
+      <text x="335" y="266" text-anchor="middle" font-size="9" fill="#666" font-family="DM Sans,sans-serif">Others 33%</text>
+      <!-- Consumer: pays monopoly rent -->
+      <text x="240" y="310" text-anchor="middle" font-size="10" fill="#c94a14" font-family="DM Sans,sans-serif" font-style="italic">Consumer: fewer choices, higher prices</text>
+
+      <!-- Divider -->
+      <line x1="480" y1="20" x2="480" y2="300" stroke="#ddd" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="480" y="160" text-anchor="middle" font-size="11" fill="#888" font-family="DM Sans,sans-serif" transform="rotate(-90,480,160)">MARKET EVOLUTION →</text>
+
+      <!-- 2025 side: 4 roughly equal boxes -->
+      <text x="720" y="30" text-anchor="middle" font-size="14" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">2025 — Competitive Oligopoly</text>
+      <!-- TVS -->
+      <rect x="500" y="50" width="108" height="100" rx="8" fill="#184f8c" opacity="0.9"/>
+      <text x="554" y="95" text-anchor="middle" font-size="14" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">TVS</text>
+      <text x="554" y="115" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)" font-family="DM Sans,sans-serif">23.5%</text>
+      <text x="554" y="132" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-family="DM Sans,sans-serif">NEW LEADER</text>
+      <!-- Bajaj -->
+      <rect x="618" y="50" width="108" height="100" rx="8" fill="#1d6b45" opacity="0.9"/>
+      <text x="672" y="95" text-anchor="middle" font-size="14" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">BAJAJ</text>
+      <text x="672" y="115" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)" font-family="DM Sans,sans-serif">19%</text>
+      <!-- Ather -->
+      <rect x="736" y="50" width="108" height="100" rx="8" fill="#c8861a" opacity="0.9"/>
+      <text x="790" y="95" text-anchor="middle" font-size="14" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">ATHER</text>
+      <text x="790" y="115" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)" font-family="DM Sans,sans-serif">16%</text>
+      <!-- Ola (fallen) -->
+      <rect x="854" y="50" width="88" height="100" rx="8" fill="#c94a14" opacity="0.5"/>
+      <text x="898" y="91" text-anchor="middle" font-size="12" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">OLA</text>
+      <text x="898" y="108" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)" font-family="DM Sans,sans-serif">15%</text>
+      <text x="898" y="124" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.8)" font-family="DM Sans,sans-serif">↓51%</text>
+      <!-- Competition arrows -->
+      <path d="M608 100 L620 100" fill="none" stroke="#fff" stroke-width="1.5" marker-end="url(#arrW)"/>
+      <path d="M726 100 L738 100" fill="none" stroke="#fff" stroke-width="1.5" marker-end="url(#arrW)"/>
+      <path d="M844 100 L856 100" fill="none" stroke="#fff" stroke-width="1.5" marker-end="url(#arrW)"/>
+      <!-- Consumer benefit -->
+      <rect x="500" y="175" width="442" height="52" rx="8" fill="#e8f4ee"/>
+      <text x="721" y="196" text-anchor="middle" font-size="12" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">Competition benefit for consumers:</text>
+      <text x="721" y="216" text-anchor="middle" font-size="11" fill="#4a443c" font-family="DM Sans,sans-serif">Entry-level EV scooter now from ₹74,000 · More model choice · Better after-sales</text>
+      <!-- Price → MC label -->
+      <text x="720" y="250" text-anchor="middle" font-size="10" fill="#1d6b45" font-family="DM Sans,sans-serif" font-style="italic">Price approaching marginal cost — econ textbook in action</text>
+      <text x="720" y="268" text-anchor="middle" font-size="10" fill="#c94a14" font-family="DM Sans,sans-serif" font-style="italic">Ola's 71% sales drop: service failures → competition punishes quality lapses</text>
+
+      <!-- Monopoly vs competition price comparison -->
+      <rect x="500" y="280" width="208" height="30" rx="6" fill="#fde8df"/>
+      <text x="604" y="300" text-anchor="middle" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">Monopoly price: Pm &gt; MC</text>
+      <rect x="716" y="280" width="226" height="30" rx="6" fill="#d7eee3"/>
+      <text x="829" y="300" text-anchor="middle" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif">Competitive price: P → MC</text>
+
+      <defs>
+        <marker id="arrW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="dialogue">
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>In 2022, Ola Electric controlled <span class="data">35%</span> of the e-2W market — classic <span class="econ-term">dominant firm behaviour</span>. It could price aggressively, absorb losses with VC funding, and crowd out rivals. Consumers had limited choice and paid a premium.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>By 2025: TVS leads at <span class="data">23.5%</span>, Bajaj at <span class="data">19%</span>, Ather at <span class="data">16%</span>, Ola down to <span class="data">15%</span> — a 51% sales collapse driven by service failures and competition. Legacy manufacturers with dealer networks and service centres won the long game.</p></div>
+    </div>
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>This is <span class="econ-term">oligopoly theory at work</span>. Competition between four near-equal firms forces prices toward <span class="econ-term">marginal cost</span>. Ola launched a scooter at <span class="data">₹74,000</span> — the market punishes monopoly rents and rewards the consumer.</p></div>
+    </div>
+  </div>
+
+  <div class="visual-panel">
+    <div class="vp-header"><div class="vp-icon">📊</div><div class="vp-title">E-2W Market Share Shift: 2022 vs 2025</div></div>
+    <div class="vp-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div>
+          <div style="font-size:11px;color:#7a7268;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">2022 — Dominant Firm</div>
+          <div id="chart2022" style="position:relative;width:100%;height:180px;"><canvas role="img" aria-label="2022 pie: Ola 35%, TVS 12%, Bajaj 10%, Ather 10%, Others 33%">2022: Ola 35%, TVS 12%, Bajaj 10%, Ather 10%, Others 33%</canvas></div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#7a7268;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">2025 — Competitive Oligopoly</div>
+          <div id="chart2025" style="position:relative;width:100%;height:180px;"><canvas role="img" aria-label="2025 pie: TVS 23.5%, Bajaj 19%, Ather 16%, Ola 15%, Others 26.5%">2025: TVS 23.5%, Bajaj 19%, Ather 16%, Ola 15%, Others 26.5%</canvas></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;">
+        <span style="display:flex;align-items:center;gap:4px;font-size:12px;color:#4a443c;"><span style="width:10px;height:10px;border-radius:2px;background:#c94a14;display:inline-block;"></span>Ola Electric</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:12px;color:#4a443c;"><span style="width:10px;height:10px;border-radius:2px;background:#184f8c;display:inline-block;"></span>TVS Motor</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:12px;color:#4a443c;"><span style="width:10px;height:10px;border-radius:2px;background:#1d6b45;display:inline-block;"></span>Bajaj Auto</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:12px;color:#4a443c;"><span style="width:10px;height:10px;border-radius:2px;background:#c8861a;display:inline-block;"></span>Ather Energy</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:12px;color:#4a443c;"><span style="width:10px;height:10px;border-radius:2px;background:#9e9890;display:inline-block;"></span>Others</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">Economics Concept: Oligopoly vs. Perfect Competition</div>
+    <div class="concept-text">An oligopoly is a market with a few large firms with strategic interdependence. India's EV market has evolved from near-monopoly toward genuine rivalry, delivering lower prices and more choice. Tata Motors' car market share fell from 61% to 39% in one year as Mahindra and MG entered aggressively — classic competitive market dynamics.</div>
+  </div>
+</div>
+
+<!-- ═══════════════ SCENE 5 ═══════════════ -->
+<div class="scene">
+  <div class="scene-header">
+    <div class="scene-num">5</div>
+    <div class="scene-meta">
+      <div class="scene-concept">Microeconomics Concept · TCO, Externalities, Market Failure &amp; Pigouvian Tax</div>
+      <div class="scene-title">The Economics of Switching — Externalities &amp; the True Cost</div>
+    </div>
+  </div>
+
+  <!-- EXTERNALITIES ILLUSTRATION -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">🌫️</div><div class="vp-title">Negative Externalities — The Costs Society Pays That Ramesh Doesn't</div></div>
+    <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="960" height="300" fill="#f0ebe4"/>
+
+      <!-- Delhi cityscape background -->
+      <rect x="0" y="180" width="960" height="120" fill="#c8b8a0"/>
+      <!-- Smoggy sky -->
+      <rect x="0" y="0" width="960" height="180" fill="#d4ccc0"/>
+      <!-- Smog layer -->
+      <ellipse cx="480" cy="80" rx="480" ry="70" fill="#b8b0a0" opacity="0.5"/>
+      <ellipse cx="480" cy="60" rx="380" ry="50" fill="#a8a098" opacity="0.35"/>
+      <!-- Buildings silhouette -->
+      <rect x="0" y="110" width="60" height="90" fill="#9a9080"/>
+      <rect x="60" y="130" width="40" height="70" fill="#8a8070"/>
+      <rect x="100" y="100" width="50" height="100" fill="#9a9080"/>
+      <rect x="150" y="120" width="35" height="80" fill="#8a8070"/>
+      <rect x="185" y="90" width="70" height="110" fill="#9a9080"/>
+      <rect x="255" y="130" width="45" height="70" fill="#8a8070"/>
+      <rect x="640" y="105" width="65" height="95" fill="#9a9080"/>
+      <rect x="705" y="125" width="40" height="75" fill="#8a8070"/>
+      <rect x="745" y="95" width="75" height="105" fill="#9a9080"/>
+      <rect x="820" y="118" width="50" height="82" fill="#8a8070"/>
+      <rect x="870" y="108" width="90" height="92" fill="#9a9080"/>
+
+      <!-- PETROL SCOOTER emitting fumes -->
+      <ellipse cx="460" cy="218" rx="50" ry="14" fill="#888" opacity="0.7"/>
+      <rect x="422" y="204" width="48" height="12" rx="5" fill="#c94a14"/>
+      <rect x="428" y="196" width="6" height="20" rx="3" fill="#555"/>
+      <circle cx="484" cy="220" r="16" fill="#333"/>
+      <circle cx="484" cy="220" r="9" fill="#555"/>
+      <circle cx="416" cy="220" r="16" fill="#333"/>
+      <circle cx="416" cy="220" r="9" fill="#555"/>
+      <!-- Fumes from scooter -->
+      <circle cx="395" cy="208" r="8" fill="#888" opacity="0.45"/>
+      <circle cx="372" cy="196" r="12" fill="#888" opacity="0.32"/>
+      <circle cx="344" cy="180" r="16" fill="#888" opacity="0.22"/>
+      <circle cx="310" cy="160" r="20" fill="#888" opacity="0.16"/>
+      <circle cx="270" cy="135" r="26" fill="#888" opacity="0.12"/>
+
+      <!-- Cost bubbles radiating from smoke -->
+      <!-- Health cost -->
+      <rect x="28" y="22" width="168" height="70" rx="10" fill="#fff" stroke="#c94a14" stroke-width="1.5"/>
+      <text x="112" y="44" text-anchor="middle" font-size="12" fill="#c94a14" font-family="DM Sans,sans-serif" font-weight="600">Health Cost</text>
+      <text x="112" y="62" text-anchor="middle" font-size="11" fill="#4a443c" font-family="DM Sans,sans-serif">PM2.5, NOx → lung disease</text>
+      <text x="112" y="79" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Paid by: hospitals, patients, govt</text>
+      <path d="M196 58 Q270 100 302 148" fill="none" stroke="#c94a14" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrExt)"/>
+
+      <!-- Climate cost -->
+      <rect x="220" y="20" width="168" height="70" rx="10" fill="#fff" stroke="#e8831a" stroke-width="1.5"/>
+      <text x="304" y="44" text-anchor="middle" font-size="12" fill="#e8831a" font-family="DM Sans,sans-serif" font-weight="600">Climate Cost</text>
+      <text x="304" y="62" text-anchor="middle" font-size="11" fill="#4a443c" font-family="DM Sans,sans-serif">CO₂ → global warming</text>
+      <text x="304" y="79" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Paid by: society, future generations</text>
+      <path d="M340 90 Q360 130 345 156" fill="none" stroke="#e8831a" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrExt2)"/>
+
+      <!-- Oil import cost -->
+      <rect x="590" y="20" width="168" height="70" rx="10" fill="#fff" stroke="#184f8c" stroke-width="1.5"/>
+      <text x="674" y="44" text-anchor="middle" font-size="12" fill="#184f8c" font-family="DM Sans,sans-serif" font-weight="600">Import Cost</text>
+      <text x="674" y="62" text-anchor="middle" font-size="11" fill="#4a443c" font-family="DM Sans,sans-serif">$80B+ oil imports/year</text>
+      <text x="674" y="79" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Paid by: India's forex reserves</text>
+      <path d="M590 60 Q540 80 510 160" fill="none" stroke="#184f8c" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrExt3)"/>
+
+      <!-- Road wear -->
+      <rect x="770" y="20" width="168" height="70" rx="10" fill="#fff" stroke="#1d6b45" stroke-width="1.5"/>
+      <text x="854" y="44" text-anchor="middle" font-size="12" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">Noise &amp; Congestion</text>
+      <text x="854" y="62" text-anchor="middle" font-size="11" fill="#4a443c" font-family="DM Sans,sans-serif">Urban quality of life</text>
+      <text x="854" y="79" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Paid by: all city residents</text>
+
+      <!-- "None of these appear in Ramesh's fuel bill" -->
+      <rect x="300" y="244" width="360" height="44" rx="8" fill="rgba(26,22,18,0.8)"/>
+      <text x="480" y="263" text-anchor="middle" font-size="12" fill="#e8831a" font-family="DM Sans,sans-serif" font-weight="600">None of these costs appear in Ramesh's fuel bill</text>
+      <text x="480" y="281" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.8)" font-family="DM Sans,sans-serif">This is a textbook market failure → justifies EV subsidies</text>
+
+      <defs>
+        <marker id="arrExt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#c94a14" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+        <marker id="arrExt2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#e8831a" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+        <marker id="arrExt3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#184f8c" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- EXTERNALITIES ECONOMIC DIAGRAM -->
+  <div class="visual-panel">
+    <div class="vp-header"><div class="vp-icon">📐</div><div class="vp-title">Market Failure Diagram — Social Cost vs Private Cost of Petrol Vehicles</div></div>
+    <div class="vp-body">
+      <svg width="100%" viewBox="0 0 680 300" role="img">
+        <title>Negative externality diagram for petrol vehicles</title>
+        <desc>Supply curve (private MC) sits below social MC. Socially optimal output Q* is less than market equilibrium Qm. The gap is the deadweight loss from over-production of pollution.</desc>
+        <defs><marker id="arr6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <!-- Axes -->
+        <line x1="80" y1="20" x2="80" y2="255" stroke="#1a1612" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <line x1="80" y1="255" x2="620" y2="255" stroke="#1a1612" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <text x="50" y="135" text-anchor="middle" font-size="12" fill="#4a443c" font-family="DM Sans,sans-serif" transform="rotate(-90,50,135)">Cost / Price</text>
+        <text x="350" y="280" text-anchor="middle" font-size="12" fill="#4a443c" font-family="DM Sans,sans-serif">Output of petrol vehicles</text>
+        <!-- Demand -->
+        <line x1="140" y1="48" x2="580" y2="228" stroke="#184f8c" stroke-width="2" stroke-linecap="round" fill="none" marker-end="url(#arr6)"/>
+        <text x="588" y="232" font-size="11" fill="#184f8c" font-family="DM Sans,sans-serif" font-weight="600">D (PMB)</text>
+        <!-- Private MC (S1) -->
+        <line x1="100" y1="228" x2="520" y2="48" stroke="#888" stroke-width="2" stroke-linecap="round" fill="none" marker-end="url(#arr6)"/>
+        <text x="527" y="46" font-size="11" fill="#888" font-family="DM Sans,sans-serif" font-weight="600">S = PMC</text>
+        <!-- Social MC (higher, shifted up) -->
+        <line x1="100" y1="190" x2="520" y2="18" stroke="#c94a14" stroke-width="2.5" stroke-linecap="round" fill="none" marker-end="url(#arr6)"/>
+        <text x="527" y="16" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif" font-weight="600">SMC (PMC+externality)</text>
+        <!-- Market equilibrium Qm, Pm -->
+        <circle cx="330" cy="138" r="5" fill="#888"/>
+        <line x1="330" y1="138" x2="80" y2="138" stroke="#888" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <line x1="330" y1="138" x2="330" y2="255" stroke="#888" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <text x="72" y="142" text-anchor="end" font-size="11" fill="#888" font-family="DM Sans,sans-serif">Pm</text>
+        <text x="330" y="268" text-anchor="middle" font-size="11" fill="#888" font-family="DM Sans,sans-serif">Qm</text>
+        <!-- Social optimum Q*, P* -->
+        <circle cx="248" cy="124" r="5" fill="#c94a14"/>
+        <line x1="248" y1="124" x2="80" y2="124" stroke="#c94a14" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <line x1="248" y1="124" x2="248" y2="255" stroke="#c94a14" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+        <text x="72" y="128" text-anchor="end" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">P*</text>
+        <text x="248" y="268" text-anchor="middle" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif">Q*</text>
+        <!-- DWL triangle shading -->
+        <polygon points="248,124 330,138 330,80" fill="#c94a14" opacity="0.12"/>
+        <text x="310" y="108" font-size="10" fill="#c94a14" font-family="DM Sans,sans-serif">DWL</text>
+        <!-- Pigouvian tax annotation -->
+        <rect x="396" y="160" width="200" height="60" rx="8" fill="#f5f0e8"/>
+        <text x="496" y="181" text-anchor="middle" font-size="11" fill="#c8861a" font-family="DM Sans,sans-serif" font-weight="600">Pigouvian correction:</text>
+        <text x="496" y="198" text-anchor="middle" font-size="10" fill="#4a443c" font-family="DM Sans,sans-serif">28% GST on petrol cars</text>
+        <text x="496" y="212" text-anchor="middle" font-size="10" fill="#4a443c" font-family="DM Sans,sans-serif">raises P → reduces Qm toward Q*</text>
+        <!-- Externality gap arrow -->
+        <line x1="150" y1="100" x2="150" y2="188" stroke="#c94a14" stroke-width="1.5" marker-end="url(#arr6)" marker-start="url(#arr6)"/>
+        <text x="163" y="148" font-size="10" fill="#c94a14" font-family="DM Sans,sans-serif">Externality</text>
+        <text x="163" y="160" font-size="10" fill="#c94a14" font-family="DM Sans,sans-serif">gap</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>Ramesh never pays for the pollution his scooter creates. Those health costs, carbon costs, and oil import costs are <span class="econ-term">negative externalities</span> — costs borne by society, not by the individual buyer. This gap between private cost and social cost is a classic <span class="econ-term">market failure</span>.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>EV subsidies and high GST on petrol cars are <span class="econ-term">Pigouvian corrections</span> — named after economist Arthur Pigou. They force private prices to reflect social costs. In Delhi, where vehicles cause <span class="data">over 25%</span> of particulate pollution, mass EV adoption could prevent thousands of respiratory illnesses annually.</p></div>
+    </div>
+  </div>
+
+  <!-- TCO INTERACTIVE -->
+  <div class="visual-panel">
+    <div class="vp-header"><div class="vp-icon">⚖️</div><div class="vp-title">Interactive Total Cost of Ownership — Petrol vs Electric Scooter (5-Year)</div></div>
+    <div class="vp-body">
+      <label class="interactive-label">Monthly kilometres driven: <span id="km-display">1,500</span> km</label>
+      <input type="range" min="500" max="3000" step="100" value="1500" id="km-slider">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;">
+        <div style="background:#fde8df;border-radius:8px;padding:14px;">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:#c94a14;margin-bottom:6px;">Petrol Scooter — 5 yr total</div>
+          <div style="font-size:28px;font-family:'Playfair Display',serif;color:#1a1612;" id="petrol-tco">₹3.9L</div>
+        </div>
+        <div style="background:#dde8f5;border-radius:8px;padding:14px;">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:#184f8c;margin-bottom:6px;">Electric Scooter — 5 yr total</div>
+          <div style="font-size:28px;font-family:'Playfair Display',serif;color:#1a1612;" id="ev-tco">₹2.8L</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding:12px 16px;background:#f5f0e8;border-radius:8px;display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:13px;color:#4a443c;">5-year EV savings:</span>
+        <span style="font-size:22px;font-weight:600;color:#1d6b45;font-family:'Playfair Display',serif;" id="savings-display">₹1.1L</span>
+      </div>
+      <div style="margin-top:16px;height:200px;position:relative;">
+        <canvas id="tcoChart" role="img" aria-label="Bar chart comparing petrol and EV total cost of ownership">TCO comparison chart</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">Economics Concept: Negative Externalities &amp; Market Failure</div>
+    <div class="concept-text">A negative externality arises when a transaction imposes costs on uninvolved third parties. The socially optimal output of petrol vehicles is lower than the market equilibrium. EV subsidies, high GST on ICE vehicles, and fuel taxes are Pigouvian corrections designed to align private incentives with social welfare — closing the gap between private and social cost.</div>
+  </div>
+</div>
+
+<!-- ═══════════════ SCENE 6 ═══════════════ -->
+<div class="scene">
+  <div class="scene-header">
+    <div class="scene-num">6</div>
+    <div class="scene-meta">
+      <div class="scene-concept">Microeconomics Concept · Coordination Failure, Network Effects, Barriers to Entry</div>
+      <div class="scene-title">The Chicken-and-Egg Problem — Why Chargers Matter</div>
+    </div>
+  </div>
+
+  <!-- CHARGING INFRASTRUCTURE ILLUSTRATION -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">⚡</div><div class="vp-title">The Network Effect — Charging Infrastructure &amp; EV Adoption Spiral</div></div>
+    <svg viewBox="0 0 960 280" xmlns="http://www.w3.org/2000/svg">
+      <rect width="960" height="280" fill="#eef4ff"/>
+
+      <!-- HIGHWAY SCENE with chargers -->
+      <!-- Road -->
+      <rect x="0" y="200" width="960" height="80" fill="#5a5a5a"/>
+      <rect x="0" y="198" width="960" height="6" fill="#7a7a7a"/>
+      <!-- Road lane markings -->
+      <rect x="60" y="222" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="190" y="222" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="320" y="222" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="450" y="222" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="580" y="222" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="710" y="222" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="840" y="222" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+
+      <!-- CHARGING STATIONS along highway -->
+      <!-- Station 1 -->
+      <rect x="80" y="140" width="40" height="60" rx="3" fill="#184f8c"/>
+      <rect x="80" y="136" width="40" height="10" rx="3" fill="#1a5276"/>
+      <polygon points="95,150 88,165 94,162 87,180 102,163 95,166" fill="#f4d03f"/>
+      <rect x="85" y="182" width="30" height="18" rx="2" fill="#1a5276"/>
+      <text x="100" y="194" text-anchor="middle" font-size="8" fill="#fff" font-family="DM Sans,sans-serif">EV</text>
+
+      <!-- Station 2 -->
+      <rect x="280" y="140" width="40" height="60" rx="3" fill="#184f8c"/>
+      <rect x="280" y="136" width="40" height="10" rx="3" fill="#1a5276"/>
+      <polygon points="295,150 288,165 294,162 287,180 302,163 295,166" fill="#f4d03f"/>
+      <rect x="285" y="182" width="30" height="18" rx="2" fill="#1a5276"/>
+      <text x="300" y="194" text-anchor="middle" font-size="8" fill="#fff" font-family="DM Sans,sans-serif">EV</text>
+
+      <!-- Station 3 -->
+      <rect x="480" y="140" width="40" height="60" rx="3" fill="#184f8c"/>
+      <rect x="480" y="136" width="40" height="10" rx="3" fill="#1a5276"/>
+      <polygon points="495,150 488,165 494,162 487,180 502,163 495,166" fill="#f4d03f"/>
+      <rect x="485" y="182" width="30" height="18" rx="2" fill="#1a5276"/>
+      <text x="500" y="194" text-anchor="middle" font-size="8" fill="#fff" font-family="DM Sans,sans-serif">EV</text>
+
+      <!-- Station 4 -->
+      <rect x="680" y="140" width="40" height="60" rx="3" fill="#1d6b45"/>
+      <rect x="680" y="136" width="40" height="10" rx="3" fill="#145238"/>
+      <polygon points="695,150 688,165 694,162 687,180 702,163 695,166" fill="#f4d03f"/>
+      <rect x="685" y="182" width="30" height="18" rx="2" fill="#145238"/>
+      <text x="700" y="194" text-anchor="middle" font-size="8" fill="#fff" font-family="DM Sans,sans-serif">EV</text>
+
+      <!-- Station 5 -->
+      <rect x="880" y="140" width="40" height="60" rx="3" fill="#1d6b45"/>
+      <rect x="880" y="136" width="40" height="10" rx="3" fill="#145238"/>
+      <polygon points="895,150 888,165 894,162 887,180 902,163 895,166" fill="#f4d03f"/>
+      <rect x="885" y="182" width="30" height="18" rx="2" fill="#145238"/>
+      <text x="900" y="194" text-anchor="middle" font-size="8" fill="#fff" font-family="DM Sans,sans-serif">EV</text>
+
+      <!-- EV cars on road -->
+      <!-- Car 1 -->
+      <rect x="140" y="204" width="70" height="30" rx="5" fill="#184f8c"/>
+      <rect x="150" y="196" width="50" height="16" rx="4" fill="#1a5276"/>
+      <circle cx="153" cy="234" r="8" fill="#222"/><circle cx="153" cy="234" r="4" fill="#666"/>
+      <circle cx="197" cy="234" r="8" fill="#222"/><circle cx="197" cy="234" r="4" fill="#666"/>
+      <!-- Car 2 (charging - stopped at station 3) -->
+      <rect x="510" y="204" width="70" height="30" rx="5" fill="#1d6b45"/>
+      <rect x="520" y="196" width="50" height="16" rx="4" fill="#145238"/>
+      <circle cx="523" cy="234" r="8" fill="#222"/><circle cx="523" cy="234" r="4" fill="#666"/>
+      <circle cx="567" cy="234" r="8" fill="#222"/><circle cx="567" cy="234" r="4" fill="#666"/>
+      <!-- Charging cable -->
+      <path d="M500 190 Q513 200 516 204" fill="none" stroke="#f4d03f" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Car 3 -->
+      <rect x="730" y="204" width="70" height="30" rx="5" fill="#c8861a"/>
+      <rect x="740" y="196" width="50" height="16" rx="4" fill="#a06810"/>
+      <circle cx="743" cy="234" r="8" fill="#222"/><circle cx="743" cy="234" r="4" fill="#666"/>
+      <circle cx="787" cy="234" r="8" fill="#222"/><circle cx="787" cy="234" r="4" fill="#666"/>
+
+      <!-- Distance labels between stations -->
+      <text x="190" y="128" text-anchor="middle" font-size="10" fill="#184f8c" font-family="DM Sans,sans-serif">25 km</text>
+      <line x1="120" y1="132" x2="280" y2="132" stroke="#184f8c" stroke-width="1" marker-end="url(#arrB)" marker-start="url(#arrB2)"/>
+      <text x="390" y="128" text-anchor="middle" font-size="10" fill="#184f8c" font-family="DM Sans,sans-serif">25 km</text>
+      <line x1="320" y1="132" x2="480" y2="132" stroke="#184f8c" stroke-width="1" marker-end="url(#arrB)" marker-start="url(#arrB2)"/>
+      <text x="590" y="128" text-anchor="middle" font-size="10" fill="#184f8c" font-family="DM Sans,sans-serif">25 km</text>
+      <line x1="520" y1="132" x2="680" y2="132" stroke="#184f8c" stroke-width="1" marker-end="url(#arrB)" marker-start="url(#arrB2)"/>
+
+      <!-- Info boxes at top -->
+      <rect x="28" y="8" width="200" height="48" rx="8" fill="#184f8c"/>
+      <text x="128" y="28" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">12,146 public chargers</text>
+      <text x="128" y="46" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.85)" font-family="DM Sans,sans-serif">operational as of 2025</text>
+
+      <rect x="380" y="8" width="200" height="48" rx="8" fill="#1d6b45"/>
+      <text x="480" y="28" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">Charger every 25 km</text>
+      <text x="480" y="46" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.85)" font-family="DM Sans,sans-serif">on all national highways by 2027</text>
+
+      <rect x="732" y="8" width="200" height="48" rx="8" fill="#c8861a"/>
+      <text x="832" y="28" text-anchor="middle" font-size="11" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">Network effect kicks in</text>
+      <text x="832" y="46" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.85)" font-family="DM Sans,sans-serif">Each charger raises all EV value</text>
+
+      <defs>
+        <marker id="arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#184f8c" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+        <marker id="arrB2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#184f8c" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="dialogue">
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>Even knowing the economics favour EVs, Ramesh hesitates — because of a <span class="econ-term">coordination failure</span>: consumers won't buy EVs until there are enough chargers, and investors won't build chargers until there are enough EVs. Individually rational, collectively terrible.</p></div>
+    </div>
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>Once a charging network reaches critical mass, we enter <span class="econ-term">network effect</span> territory — each new charger makes every existing EV more valuable, accelerating adoption non-linearly. The government's 12,000+ chargers and a target of one every 25 km on highways are designed to trigger that tipping point.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>Supply constraints also matter. Rare earth magnet shortages in mid-2025 disrupted Bajaj and TVS production — a <span class="econ-term">supply-side shock</span> from input scarcity. India's lithium and cobalt dependence on imports is why the ACC Battery Scheme invests ₹18,100 crore in domestic battery cells.</p></div>
+    </div>
+  </div>
+
+  <!-- FLYWHEEL -->
+  <div class="visual-panel">
+    <div class="vp-header"><div class="vp-icon">🔄</div><div class="vp-title">EV Adoption Flywheel — Network Effects &amp; Market Equilibrium</div></div>
+    <div class="vp-body">
+      <svg width="100%" viewBox="0 0 680 280" role="img">
+        <title>EV adoption flywheel diagram</title>
+        <defs><marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <ellipse cx="340" cy="140" rx="62" ry="40" fill="#1d6b45" opacity="0.9"/>
+        <text x="340" y="135" text-anchor="middle" font-size="12" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">EV</text>
+        <text x="340" y="151" text-anchor="middle" font-size="12" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">FLYWHEEL</text>
+        <rect x="255" y="18" width="170" height="38" rx="8" fill="#fff" stroke="#184f8c" stroke-width="0.8"/>
+        <text x="340" y="32" text-anchor="middle" font-size="11" fill="#184f8c" font-family="DM Sans,sans-serif" font-weight="600">More EVs sold</text>
+        <text x="340" y="47" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Demand signal</text>
+        <rect x="508" y="60" width="148" height="38" rx="8" fill="#fff" stroke="#c94a14" stroke-width="0.8"/>
+        <text x="582" y="74" text-anchor="middle" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif" font-weight="600">Scale production</text>
+        <text x="582" y="89" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Economies of scale</text>
+        <rect x="508" y="182" width="148" height="38" rx="8" fill="#fff" stroke="#c94a14" stroke-width="0.8"/>
+        <text x="582" y="196" text-anchor="middle" font-size="11" fill="#c94a14" font-family="DM Sans,sans-serif" font-weight="600">Lower prices</text>
+        <text x="582" y="211" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">P → marginal cost</text>
+        <rect x="255" y="224" width="170" height="38" rx="8" fill="#fff" stroke="#1d6b45" stroke-width="0.8"/>
+        <text x="340" y="238" text-anchor="middle" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">Less range anxiety</text>
+        <text x="340" y="253" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Confidence builds</text>
+        <rect x="24" y="182" width="158" height="38" rx="8" fill="#fff" stroke="#1d6b45" stroke-width="0.8"/>
+        <text x="103" y="196" text-anchor="middle" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">More chargers</text>
+        <text x="103" y="211" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">Network effect</text>
+        <rect x="24" y="60" width="158" height="38" rx="8" fill="#fff" stroke="#184f8c" stroke-width="0.8"/>
+        <text x="103" y="74" text-anchor="middle" font-size="11" fill="#184f8c" font-family="DM Sans,sans-serif" font-weight="600">Policy investment</text>
+        <text x="103" y="89" text-anchor="middle" font-size="10" fill="#7a7268" font-family="DM Sans,sans-serif">FAME, PLI, infra</text>
+        <path d="M425 37 Q480 30 508 70" fill="none" stroke="#184f8c" stroke-width="1.5" marker-end="url(#arr4)"/>
+        <path d="M582 98 L582 182" fill="none" stroke="#c94a14" stroke-width="1.5" marker-end="url(#arr4)"/>
+        <path d="M508 195 Q460 228 425 233" fill="none" stroke="#c94a14" stroke-width="1.5" marker-end="url(#arr4)"/>
+        <path d="M255 243 Q190 248 182 220" fill="none" stroke="#1d6b45" stroke-width="1.5" marker-end="url(#arr4)"/>
+        <path d="M103 182 L103 98" fill="none" stroke="#1d6b45" stroke-width="1.5" marker-end="url(#arr4)"/>
+        <path d="M182 74 Q220 42 255 34" fill="none" stroke="#184f8c" stroke-width="1.5" marker-end="url(#arr4)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SCENE 7 ═══════════════ -->
+<div class="scene">
+  <div class="scene-header">
+    <div class="scene-num">7</div>
+    <div class="scene-meta">
+      <div class="scene-concept">Microeconomics Concept · Long-Run Equilibrium &amp; Market Transition</div>
+      <div class="scene-title">The Road Ahead — When Will EVs Stand Alone?</div>
+    </div>
+  </div>
+
+  <!-- GROWTH TRAJECTORY ILLUSTRATION -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">🛣️</div><div class="vp-title">India's EV Journey — From Subsidy-Dependent to Self-Sustaining Market</div></div>
+    <svg viewBox="0 0 960 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="960" height="260" fill="#f0f8f4"/>
+      <!-- Timeline road -->
+      <rect x="40" y="140" width="880" height="30" rx="6" fill="#ddd"/>
+      <!-- Phase 1: Seeding (2015-2019) -->
+      <rect x="40" y="140" width="176" height="30" rx="6 0 0 6" fill="#f4cca4"/>
+      <text x="128" y="160" text-anchor="middle" font-size="10" fill="#7a5030" font-family="DM Sans,sans-serif" font-weight="600">SEEDING 2015–19</text>
+      <!-- Phase 2: FAME II (2019-2024) -->
+      <rect x="216" y="140" width="264" height="30" fill="#e8c07a"/>
+      <text x="348" y="160" text-anchor="middle" font-size="10" fill="#5a3010" font-family="DM Sans,sans-serif" font-weight="600">FAME II ACCELERATION 2019–24</text>
+      <!-- Phase 3: Competitive market (2024-now) -->
+      <rect x="480" y="140" width="220" height="30" fill="#9ed4b0"/>
+      <text x="590" y="160" text-anchor="middle" font-size="10" fill="#1a4a30" font-family="DM Sans,sans-serif" font-weight="600">COMPETITIVE MARKET 2024–26</text>
+      <!-- Phase 4: Self-sustaining (2027+) -->
+      <rect x="700" y="140" width="220" height="30" rx="0 6 6 0" fill="#1d6b45" opacity="0.85"/>
+      <text x="810" y="160" text-anchor="middle" font-size="10" fill="#fff" font-family="DM Sans,sans-serif" font-weight="600">SELF-SUSTAINING 2027+</text>
+
+      <!-- Milestone markers on timeline -->
+      <circle cx="128" cy="140" r="6" fill="#c94a14"/>
+      <text x="128" y="130" text-anchor="middle" font-size="9" fill="#c94a14" font-family="DM Sans,sans-serif">FAME I</text>
+      <circle cx="216" cy="140" r="6" fill="#e8831a"/>
+      <text x="216" y="130" text-anchor="middle" font-size="9" fill="#e8831a" font-family="DM Sans,sans-serif">FAME II</text>
+      <circle cx="480" cy="140" r="6" fill="#184f8c"/>
+      <text x="480" y="130" text-anchor="middle" font-size="9" fill="#184f8c" font-family="DM Sans,sans-serif">PM E-Drive</text>
+      <circle cx="700" cy="140" r="6" fill="#1d6b45"/>
+      <text x="700" y="130" text-anchor="middle" font-size="9" fill="#1d6b45" font-family="DM Sans,sans-serif">Phase-out</text>
+
+      <!-- EV SALES Bars (simplified) -->
+      <text x="480" y="20" text-anchor="middle" font-size="12" fill="#1a1612" font-family="DM Sans,sans-serif" font-weight="600">Annual EV Sales (India) — Millions of units</text>
+      <!-- Bars at milestones -->
+      <!-- 2019: 0.32M -->
+      <rect x="96" y="95" width="18" height="40" rx="2" fill="#e8831a" opacity="0.7"/>
+      <text x="105" y="92" text-anchor="middle" font-size="8" fill="#7a7268" font-family="DM Sans,sans-serif">0.3M</text>
+      <!-- 2021: 0.96M -->
+      <rect x="280" y="76" width="18" height="60" rx="2" fill="#e8831a" opacity="0.8"/>
+      <text x="289" y="73" text-anchor="middle" font-size="8" fill="#7a7268" font-family="DM Sans,sans-serif">1M</text>
+      <!-- 2023: 1.53M -->
+      <rect x="390" y="60" width="18" height="76" rx="2" fill="#c8861a" opacity="0.85"/>
+      <text x="399" y="57" text-anchor="middle" font-size="8" fill="#7a7268" font-family="DM Sans,sans-serif">1.5M</text>
+      <!-- 2025: 2.27M -->
+      <rect x="550" y="42" width="18" height="94" rx="2" fill="#1d6b45" opacity="0.9"/>
+      <text x="559" y="39" text-anchor="middle" font-size="8" fill="#1d6b45" font-family="DM Sans,sans-serif">2.3M</text>
+      <!-- 2027 projected: 5M -->
+      <rect x="718" y="20" width="18" height="116" rx="2" fill="#1d6b45" opacity="0.5" stroke="#1d6b45" stroke-dasharray="3 2"/>
+      <text x="727" y="17" text-anchor="middle" font-size="8" fill="#1d6b45" font-family="DM Sans,sans-serif">5M*</text>
+      <!-- 2030 projected: 10M -->
+      <rect x="860" y="8" width="18" height="128" rx="2" fill="#1d6b45" opacity="0.35" stroke="#1d6b45" stroke-dasharray="3 2"/>
+      <text x="869" y="5" text-anchor="middle" font-size="8" fill="#1d6b45" font-family="DM Sans,sans-serif">10M*</text>
+
+      <!-- Subsidy intensity line (decreasing) -->
+      <text x="40" y="218" font-size="10" fill="#c94a14" font-family="DM Sans,sans-serif">Subsidy intensity:</text>
+      <path d="M140 212 L215 210 L270 208 L350 205 L430 199 L480 188 L560 175 L700 162 L880 155" fill="none" stroke="#c94a14" stroke-width="2" stroke-dasharray="5 3"/>
+      <text x="840" y="152" font-size="9" fill="#c94a14" font-family="DM Sans,sans-serif">↓ phasing out</text>
+
+      <!-- Footnote -->
+      <text x="480" y="246" text-anchor="middle" font-size="9" fill="#7a7268" font-family="DM Sans,sans-serif">* Projected. Government target: 30% EV penetration by 2030 (≈10M units/year)</text>
+    </svg>
+  </div>
+
+  <div class="dialogue">
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>In microeconomics, <span class="econ-term">long-run competitive equilibrium</span> is reached when economic profits are zero, prices equal average total cost, and no firms want to enter or exit. The government's goal is getting India's EV market to this self-sustaining point — without perpetual subsidies.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>That is why FAME II's ₹15,000/kWh incentive became ₹10,000, then ₹5,000 — a <span class="econ-term">planned subsidy phase-out</span>. The test: can demand survive without the crutch? For two-wheelers: yes. For four-wheelers: not yet. The market is at different stages of the demand curve for different segments.</p></div>
+    </div>
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>India sold <span class="data">2.27 million EVs</span> in 2025 — crossing 2 million for the first time. The market is valued at <span class="data">USD 54 billion</span> growing at 19% per year. Globally, India is now the world's largest market for electric three-wheelers, overtaking China. These are not subsidy-dependent numbers — they reflect genuine structural shift.</p></div>
+    </div>
+  </div>
+
+  <div class="visual-panel">
+    <div class="vp-header"><div class="vp-icon">📈</div><div class="vp-title">India EV Market Growth Trajectory 2019–2029</div></div>
+    <div class="vp-body">
+      <div style="position:relative;width:100%;height:240px;">
+        <canvas id="growthChart" role="img" aria-label="Line chart showing India EV market growth 2019 to 2029">India EV sales growth chart</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box accent"><div class="stat-val">2.27M</div><div class="stat-label">EVs sold in India, 2025</div></div>
+    <div class="stat-box"><div class="stat-val">$54B</div><div class="stat-label">Market size 2025</div></div>
+    <div class="stat-box green"><div class="stat-val">10M</div><div class="stat-label">Projected annual sales 2030</div></div>
+    <div class="stat-box blue"><div class="stat-val">30%</div><div class="stat-label">Government EV penetration target 2030</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ SCENE 8 ═══════════════ -->
+<div class="scene">
+  <div class="scene-header">
+    <div class="scene-num">8</div>
+    <div class="scene-meta">
+      <div class="scene-concept">Summary · All 16 Microeconomics Concepts</div>
+      <div class="scene-title">What Ramesh's Story Teaches Us About Markets</div>
+    </div>
+  </div>
+
+  <!-- CLOSING ILLUSTRATION: Ramesh on EV, cleaner city -->
+  <div class="picture-panel">
+    <div class="vp-header"><div class="vp-icon">🎬</div><div class="vp-title">Closing Scene — Ramesh's Son Delivers Food on an EV, Pune 2025</div></div>
+    <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="960" height="300" fill="#d0eaf8"/>
+      <!-- Cleaner sky with sun -->
+      <circle cx="860" cy="55" r="38" fill="#f6d860" opacity="0.85"/>
+      <!-- Some clouds (lighter than scene 1) -->
+      <ellipse cx="200" cy="45" rx="70" ry="22" fill="#fff" opacity="0.7"/>
+      <ellipse cx="160" cy="48" rx="44" ry="18" fill="#fff" opacity="0.5"/>
+      <ellipse cx="240" cy="50" rx="44" ry="16" fill="#fff" opacity="0.5"/>
+      <ellipse cx="550" cy="35" rx="55" ry="18" fill="#fff" opacity="0.6"/>
+      <!-- Trees (EV city is greener) -->
+      <circle cx="60" cy="190" r="30" fill="#2e8b57" opacity="0.85"/>
+      <rect x="53" y="218" width="14" height="30" rx="3" fill="#5a4030"/>
+      <circle cx="110" cy="200" r="22" fill="#3cb371" opacity="0.8"/>
+      <rect x="104" y="220" width="12" height="24" rx="3" fill="#5a4030"/>
+      <circle cx="870" cy="188" r="28" fill="#2e8b57" opacity="0.85"/>
+      <rect x="863" y="214" width="14" height="28" rx="3" fill="#5a4030"/>
+      <circle cx="920" cy="198" r="20" fill="#3cb371" opacity="0.75"/>
+      <rect x="914" y="216" width="10" height="20" rx="3" fill="#5a4030"/>
+      <!-- Modern buildings -->
+      <rect x="400" y="100" width="80" height="160" rx="4" fill="#b4c8d8"/>
+      <rect x="420" y="80" width="40" height="185" rx="4" fill="#c0d0e0"/>
+      <rect x="500" y="120" width="70" height="140" rx="4" fill="#a8bcc8"/>
+      <rect x="560" y="110" width="60" height="150" rx="4" fill="#b4c8d8"/>
+      <!-- Solar panels on rooftops -->
+      <rect x="422" y="82" width="36" height="10" rx="2" fill="#1a3a5c" opacity="0.7"/>
+      <rect x="502" y="122" width="30" height="8" rx="2" fill="#1a3a5c" opacity="0.7"/>
+      <!-- Windows lit green (energy efficient) -->
+      <rect x="430" y="100" width="10" height="8" rx="1" fill="#9ed4b0" opacity="0.8"/>
+      <rect x="446" y="100" width="10" height="8" rx="1" fill="#9ed4b0" opacity="0.8"/>
+      <rect x="430" y="116" width="10" height="8" rx="1" fill="#f4d03f" opacity="0.7"/>
+      <rect x="446" y="116" width="10" height="8" rx="1" fill="#9ed4b0" opacity="0.8"/>
+      <!-- EV CHARGING STATION visible -->
+      <rect x="150" y="178" width="36" height="50" rx="3" fill="#184f8c"/>
+      <polygon points="161,186 155,198 160,196 154,210 167,196 161,199" fill="#f4d03f"/>
+      <!-- Road -->
+      <rect x="0" y="228" width="960" height="72" fill="#5a5a5a"/>
+      <rect x="0" y="226" width="960" height="6" fill="#7a7a7a"/>
+      <!-- Lane markings -->
+      <rect x="80" y="248" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="250" y="248" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="420" y="248" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="590" y="248" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+      <rect x="760" y="248" width="50" height="7" rx="2" fill="#e8e0c0" opacity="0.5"/>
+
+      <!-- RAMESH (older) on EV scooter -->
+      <ellipse cx="288" cy="240" rx="52" ry="14" fill="#184f8c" opacity="0.85"/>
+      <rect x="252" y="226" width="52" height="13" rx="5" fill="#222"/>
+      <rect x="303" y="220" width="7" height="20" rx="3" fill="#444"/>
+      <rect x="296" y="218" width="20" height="5" rx="2" fill="#333"/>
+      <circle cx="325" cy="249" r="17" fill="#222"/><circle cx="325" cy="249" r="9" fill="#444"/><circle cx="325" cy="249" r="4" fill="#777"/>
+      <circle cx="252" cy="249" r="17" fill="#222"/><circle cx="252" cy="249" r="9" fill="#444"/><circle cx="252" cy="249" r="4" fill="#777"/>
+      <!-- NO exhaust — clean scooter -->
+      <circle cx="236" cy="238" r="5" fill="#1d6b45" opacity="0.5"/>
+      <text x="218" y="225" text-anchor="middle" font-size="16" fill="#1d6b45">✓</text>
+      <!-- Battery bar on EV -->
+      <rect x="262" y="228" width="28" height="8" rx="2" fill="#fff" stroke="#184f8c" stroke-width="1"/>
+      <rect x="263" y="229" width="24" height="6" rx="1" fill="#1d6b45"/>
+      <!-- Ramesh figure -->
+      <rect x="263" y="207" width="22" height="24" rx="4" fill="#184f8c"/>
+      <circle cx="274" cy="200" r="12" fill="#d4a574"/>
+      <!-- Helmet blue -->
+      <path d="M263 198 Q263 185 274 183 Q285 185 285 198 Z" fill="#1a5276"/>
+      <!-- Happy face -->
+      <circle cx="269" cy="200" r="2" fill="#5a3010"/>
+      <circle cx="279" cy="200" r="2" fill="#5a3010"/>
+      <path d="M269 207 Q274 211 279 207" fill="none" stroke="#5a3010" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Delivery box on back -->
+      <rect x="236" y="210" width="28" height="22" rx="3" fill="#e8831a"/>
+      <text x="250" y="225" text-anchor="middle" font-size="8" fill="#fff" font-family="DM Sans,sans-serif">📦</text>
+
+      <!-- SON on another EV -->
+      <ellipse cx="680" cy="240" rx="48" ry="13" fill="#1d6b45" opacity="0.9"/>
+      <rect x="646" y="228" width="48" height="12" rx="5" fill="#111"/>
+      <rect x="693" y="222" width="6" height="18" rx="3" fill="#333"/>
+      <rect x="687" y="220" width="18" height="5" rx="2" fill="#222"/>
+      <circle cx="715" cy="249" r="16" fill="#111"/><circle cx="715" cy="249" r="8" fill="#333"/><circle cx="715" cy="249" r="4" fill="#666"/>
+      <circle cx="648" cy="249" r="16" fill="#111"/><circle cx="648" cy="249" r="8" fill="#333"/><circle cx="648" cy="249" r="4" fill="#666"/>
+      <!-- Son figure (younger) -->
+      <rect x="655" y="208" width="20" height="22" rx="4" fill="#1d6b45"/>
+      <circle cx="665" cy="202" r="11" fill="#d4a574"/>
+      <path d="M654 200 Q655 188 665 186 Q675 188 676 200 Z" fill="#1d6b45"/>
+      <!-- Happy face -->
+      <circle cx="661" cy="202" r="1.5" fill="#5a3010"/>
+      <circle cx="669" cy="202" r="1.5" fill="#5a3010"/>
+      <path d="M661 208 Q665 212 669 208" fill="none" stroke="#5a3010" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Delivery food bag on son's EV -->
+      <rect x="632" y="212" width="24" height="20" rx="3" fill="#e8831a"/>
+      <text x="644" y="226" text-anchor="middle" font-size="7" fill="#fff" font-family="DM Sans,sans-serif">FOOD</text>
+
+      <!-- Savings bubble -->
+      <rect x="326" y="120" width="200" height="80" rx="10" fill="#fff" stroke="#1d6b45" stroke-width="2"/>
+      <text x="426" y="144" text-anchor="middle" font-size="11" fill="#7a7268" font-family="DM Sans,sans-serif">Ramesh's monthly fuel bill:</text>
+      <text x="426" y="170" text-anchor="middle" font-size="26" fill="#c94a14" font-family="Playfair Display,serif" font-weight="700" text-decoration="line-through">₹4,500</text>
+      <text x="502" y="170" font-size="26" fill="#1d6b45" font-family="Playfair Display,serif" font-weight="700">₹900</text>
+      <text x="426" y="190" text-anchor="middle" font-size="10" fill="#1d6b45" font-family="DM Sans,sans-serif">Saving ₹3,600/month — ₹43,200/year</text>
+      <!-- Arrow to Ramesh -->
+      <path d="M364 200 Q320 220 310 234" fill="none" stroke="#1d6b45" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrFinal)"/>
+
+      <!-- Air quality indicator -->
+      <rect x="696" y="128" width="200" height="68" rx="10" fill="#e8f4ee" stroke="#1d6b45" stroke-width="1.5"/>
+      <text x="796" y="150" text-anchor="middle" font-size="11" fill="#1d6b45" font-family="DM Sans,sans-serif" font-weight="600">Air quality today: Good ✓</text>
+      <text x="796" y="168" text-anchor="middle" font-size="10" fill="#4a443c" font-family="DM Sans,sans-serif">30-40% lower lifecycle</text>
+      <text x="796" y="183" text-anchor="middle" font-size="10" fill="#4a443c" font-family="DM Sans,sans-serif">emissions vs petrol</text>
+
+      <defs>
+        <marker id="arrFinal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#1d6b45" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="dialogue">
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>Let's bring it together. India's EV story is a masterclass in applied microeconomics. We saw <span class="econ-term">demand curves shift right</span> through subsidies. <span class="econ-term">Supply curves shift right</span> through PLI. A dominant firm evolve into a genuine <span class="econ-term">oligopoly</span>. And <span class="econ-term">long-run equilibrium</span> being pursued through gradual subsidy withdrawal.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>We saw <span class="econ-term">market failures corrected</span> via Pigouvian taxes. <span class="econ-term">Coordination failures</span> broken by public charger investment. <span class="econ-term">Network effects</span> creating self-reinforcing growth. And <span class="econ-term">economies of scale</span> driving battery costs down 90% — making EVs genuinely affordable for Ramesh.</p></div>
+    </div>
+    <div class="line arjun">
+      <div class="speaker-col"><div class="avatar">CFE</div><div class="speaker-name">CHIOMA</div></div>
+      <div class="bubble"><p>Ramesh's monthly fuel bill dropped from <span class="data">₹4,500 to ₹900</span>. His son delivers food on an EV. The air is cleaner. His savings have grown. This is microeconomics working — individual rational decisions, shaped by smart policy, creating collective good.</p></div>
+    </div>
+    <div class="line riya">
+      <div class="speaker-col"><div class="avatar">EFE</div><div class="speaker-name">EMEAFU</div></div>
+      <div class="bubble"><p>The EV transition is not just environmental. It is deeply, fundamentally <span class="econ-term">economic</span>. And it all started with one man doing the maths at a petrol pump in Pune — and realising he could not afford to stay on petrol any longer.</p></div>
+    </div>
+  </div>
+
+  <!-- ALL CONCEPTS GRID -->
+  <div class="visual-panel">
+    <div class="vp-header"><div class="vp-icon">📚</div><div class="vp-title">All 16 Microeconomics Concepts Covered in This Video</div></div>
+    <div class="vp-body">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">
+        <div style="padding:12px 14px;background:#fde8df;border-radius:8px;font-size:12.5px;color:#c94a14;font-weight:500;border-left:3px solid #c94a14;">1. Opportunity Cost</div>
+        <div style="padding:12px 14px;background:#dde8f5;border-radius:8px;font-size:12.5px;color:#184f8c;font-weight:500;border-left:3px solid #184f8c;">2. Price Elasticity of Demand</div>
+        <div style="padding:12px 14px;background:#d7eee3;border-radius:8px;font-size:12.5px;color:#1d6b45;font-weight:500;border-left:3px solid #1d6b45;">3. Demand &amp; Supply Curves</div>
+        <div style="padding:12px 14px;background:#fef0d6;border-radius:8px;font-size:12.5px;color:#c8861a;font-weight:500;border-left:3px solid #c8861a;">4. Subsidies &amp; Tax Wedges</div>
+        <div style="padding:12px 14px;background:#fde8df;border-radius:8px;font-size:12.5px;color:#c94a14;font-weight:500;border-left:3px solid #c94a14;">5. Economies of Scale</div>
+        <div style="padding:12px 14px;background:#dde8f5;border-radius:8px;font-size:12.5px;color:#184f8c;font-weight:500;border-left:3px solid #184f8c;">6. Market Structure &amp; Oligopoly</div>
+        <div style="padding:12px 14px;background:#d7eee3;border-radius:8px;font-size:12.5px;color:#1d6b45;font-weight:500;border-left:3px solid #1d6b45;">7. Total Cost of Ownership</div>
+        <div style="padding:12px 14px;background:#fef0d6;border-radius:8px;font-size:12.5px;color:#c8861a;font-weight:500;border-left:3px solid #c8861a;">8. Negative Externalities</div>
+        <div style="padding:12px 14px;background:#fde8df;border-radius:8px;font-size:12.5px;color:#c94a14;font-weight:500;border-left:3px solid #c94a14;">9. Market Failure</div>
+        <div style="padding:12px 14px;background:#dde8f5;border-radius:8px;font-size:12.5px;color:#184f8c;font-weight:500;border-left:3px solid #184f8c;">10. Network Effects</div>
+        <div style="padding:12px 14px;background:#d7eee3;border-radius:8px;font-size:12.5px;color:#1d6b45;font-weight:500;border-left:3px solid #1d6b45;">11. Barriers to Entry</div>
+        <div style="padding:12px 14px;background:#fef0d6;border-radius:8px;font-size:12.5px;color:#c8861a;font-weight:500;border-left:3px solid #c8861a;">12. Long-Run Equilibrium</div>
+        <div style="padding:12px 14px;background:#fde8df;border-radius:8px;font-size:12.5px;color:#c94a14;font-weight:500;border-left:3px solid #c94a14;">13. Coordination Failure</div>
+        <div style="padding:12px 14px;background:#dde8f5;border-radius:8px;font-size:12.5px;color:#184f8c;font-weight:500;border-left:3px solid #184f8c;">14. Supply Shocks &amp; Input Scarcity</div>
+        <div style="padding:12px 14px;background:#d7eee3;border-radius:8px;font-size:12.5px;color:#1d6b45;font-weight:500;border-left:3px solid #1d6b45;">15. Pigouvian Taxes</div>
+        <div style="padding:12px 14px;background:#fef0d6;border-radius:8px;font-size:12.5px;color:#c8861a;font-weight:500;border-left:3px solid #c8861a;">16. Price → Marginal Cost</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ REFERENCES ═══════════════ -->
+<div class="references">
+  <h2>Authoritative References &amp; Sources</h2>
+  <div class="ref-list">
+    <div class="ref-item"><div class="ref-num">1</div><div>International Council on Clean Transportation (ICCT) — <em>Electric Vehicle Demand Incentives in India: The FAME II Scheme and Considerations for a Potential Next Phase</em>, July 2024. <a href="https://theicct.org/publication/electric-vehicle-demand-incentives-in-india-the-fame-ii-scheme-and-considerations-for-a-potential-next-phase-june24/" target="_blank">theicct.org</a></div></div>
+    <div class="ref-item"><div class="ref-num">2</div><div>Institute for Energy Economics and Financial Analysis (IEEFA) — <em>From Incentives to Adoption: A Decadal Review of India's EV Subsidy Effectiveness</em>, 2024. <a href="https://ieefa.org/resources/incentives-adoption-decadal-review-indias-ev-subsidy-effectiveness" target="_blank">ieefa.org</a></div></div>
+    <div class="ref-item"><div class="ref-num">3</div><div>Council on Energy, Environment and Water (CEEW) — <em>Cost of Ownership for India's Road Transport Sector</em>, July 2025. <a href="https://www.ceew.in/publications/cost-of-ownership-for-road-transport-sector-for-different-vehicle-segments-fuels-and-powertrains" target="_blank">ceew.in</a></div></div>
+    <div class="ref-item"><div class="ref-num">4</div><div>Ministry of Heavy Industries, Government of India — <em>FAME II Scheme (Official)</em>. <a href="https://heavyindustries.gov.in/en/fame-ii" target="_blank">heavyindustries.gov.in</a></div></div>
+    <div class="ref-item"><div class="ref-num">5</div><div>NITI Aayog e-AMRIT Portal — <em>National Level EV Policies</em>. <a href="https://e-amrit.niti.gov.in/national-level-policy" target="_blank">e-amrit.niti.gov.in</a></div></div>
+    <div class="ref-item"><div class="ref-num">6</div><div>India Brand Equity Foundation (IBEF) — <em>Sustainable Mobility: The Role of Government Initiatives in Shaping India's EV Landscape</em>, August 2024. <a href="https://www.ibef.org/blogs/sustainable-mobility-the-role-of-government-initiatives-in-shaping-india-s-electric-vehicle-landscape" target="_blank">ibef.org</a></div></div>
+    <div class="ref-item"><div class="ref-num">7</div><div>EVReporter — <em>India's Electric Vehicle Market: 2.3 Million Units and Counting — CY2025 Annual Insights</em>, February 2026. <a href="https://evreporter.com/indias-electric-vehicle-market-2-3-million-units-and-counting-cy-2025-annual-insights/" target="_blank">evreporter.com</a></div></div>
+    <div class="ref-item"><div class="ref-num">8</div><div>Autocar Professional — <em>Record 1.28 Million e-2Ws Sold in CY2025; TVS, Bajaj, Ather and Hero Clock Best-Ever Retails</em>. <a href="https://www.autocarpro.in/analysis-sales/record-128-million-e-2ws-sold-in-cy2025-tvs-bajaj-ather-and-hero-clock-best-ever-retails-130376" target="_blank">autocarpro.in</a></div></div>
+    <div class="ref-item"><div class="ref-num">9</div><div>Drishti IAS — <em>New Electric Vehicle Policy 2024</em>. <a href="https://www.drishtiias.com/daily-updates/daily-news-analysis/new-electric-vehicle-policy-2024" target="_blank">drishtiias.com</a></div></div>
+    <div class="ref-item"><div class="ref-num">10</div><div>Jameel Motors — <em>Exploring India's EV Transition</em>, August 2025. <a href="https://jameelmotors.com/en/insights/exploring-indias-ev-transition/" target="_blank">jameelmotors.com</a></div></div>
+    <div class="ref-item"><div class="ref-num">11</div><div>Business Standard — <em>EV Funding in India Drops 37% from 2022 to 2024 Amid Policy, Sales Slowdown</em>, December 2024. <a href="https://www.business-standard.com/industry/auto/india-ev-sector-funding-decline-policy-impact-pm-e-drive-2024-124122600287_1.html" target="_blank">business-standard.com</a></div></div>
+    <div class="ref-item"><div class="ref-num">12</div><div>IMPRI Impact and Policy Research Institute — <em>India's Updated Electric Vehicle Policy 2024</em>. <a href="https://www.impriindia.com/insights/indias-updated-ev-policy-2024/" target="_blank">impriindia.com</a></div></div>
+    <div class="ref-item"><div class="ref-num">13</div><div>Mordor Intelligence — <em>India Electric Vehicle Market Size &amp; Forecast 2025–2029</em>. <a href="https://www.mordorintelligence.com/industry-reports/india-electric-vehicle-market" target="_blank">mordorintelligence.com</a></div></div>
+    <div class="ref-item"><div class="ref-num">14</div><div>Citizen Care EV — <em>The Real Cost of Owning an EV vs a Fuel Car in India</em>. <a href="https://www.citizencareev.com/the-real-cost-of-owning-an-ev-vs-a-fuel-car/" target="_blank">citizencareev.com</a></div></div>
+    <div class="ref-item"><div class="ref-num">15</div><div>Business Standard — <em>India e-2W Registrations Cross 1.18 Million; TVS Leads, Ola Slips</em>, December 2025. <a href="https://www.business-standard.com/industry/auto/auto-indias-electric-two-wheeler-registrations-jan-nov-2025-vahan-125120300186_1.html" target="_blank">business-standard.com</a></div></div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// PIE CHARTS
+function makePie(id, data, labels, colors) {
+  const canvas = document.querySelector('#'+id+' canvas');
+  new Chart(canvas, {
+    type:'pie',
+    data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:2,borderColor:'#faf7f2'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.label+': '+ctx.parsed+'%'}}}}
+  });
+}
+makePie('chart2022',[35,12,10,10,33],['Ola','TVS','Bajaj','Ather','Others'],['#c94a14','#184f8c','#1d6b45','#c8861a','#9e9890']);
+makePie('chart2025',[15,23.5,19,16,26.5],['Ola','TVS','Bajaj','Ather','Others'],['#c94a14','#184f8c','#1d6b45','#c8861a','#9e9890']);
+
+// GROWTH CHART
+new Chart(document.getElementById('growthChart'),{
+  type:'line',
+  data:{
+    labels:['2019','2020','2021','2022','2023','2024','2025','2026*','2027*','2028*','2029*'],
+    datasets:[{
+      label:'EV Sales (millions)',
+      data:[0.15,0.12,0.32,0.96,1.53,1.95,2.27,3.2,5.0,7.5,10.0],
+      borderColor:'#1d6b45',backgroundColor:'rgba(29,107,69,0.08)',
+      pointBackgroundColor:['#1d6b45','#1d6b45','#1d6b45','#1d6b45','#1d6b45','#1d6b45','#1d6b45','#c94a14','#c94a14','#c94a14','#c94a14'],
+      pointRadius:5,tension:0.4,fill:true,
+      segment:{borderDash:ctx=>ctx.p0DataIndex>=6?[6,3]:[]}
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.y.toFixed(2)+'M units'+(ctx.dataIndex>=7?' (projected)':'')}}},
+    scales:{
+      y:{beginAtZero:true,title:{display:true,text:'Million EVs',font:{size:11},color:'#7a7268'},ticks:{callback:v=>v+'M',color:'#7a7268',font:{size:11}},grid:{color:'rgba(0,0,0,0.05)'}},
+      x:{ticks:{color:'#7a7268',font:{size:11}},grid:{display:false}}
+    }
+  }
+});
+
+// TCO CALCULATOR
+const slider=document.getElementById('km-slider');
+function updateTCO(){
+  const km=parseInt(slider.value);
+  document.getElementById('km-display').textContent=km.toLocaleString('en-IN');
+  const annualKm=km*12;
+  const petrolRunning=annualKm*5.5,evRunning=annualKm*1.48;
+  const petrolMaint=12000,evMaint=5000;
+  const petrolTotal=75000+(petrolRunning+petrolMaint)*5;
+  const evTotal=90000+(evRunning+evMaint)*5;
+  const savings=petrolTotal-evTotal;
+  const fmt=v=>v>=100000?'₹'+(v/100000).toFixed(1)+'L':'₹'+Math.round(v/1000)+'K';
+  document.getElementById('petrol-tco').textContent=fmt(petrolTotal);
+  document.getElementById('ev-tco').textContent=fmt(evTotal);
+  document.getElementById('savings-display').textContent=fmt(Math.max(0,savings));
+  if(window.tcoChartInst){window.tcoChartInst.destroy();}
+  window.tcoChartInst=new Chart(document.getElementById('tcoChart'),{
+    type:'bar',
+    data:{
+      labels:['Purchase price','5-yr fuel/charging','5-yr maintenance','Total 5-yr cost'],
+      datasets:[
+        {label:'Petrol',data:[75000,petrolRunning*5,petrolMaint*5,petrolTotal],backgroundColor:'#c94a14',borderRadius:4},
+        {label:'Electric',data:[90000,evRunning*5,evMaint*5,evTotal],backgroundColor:'#184f8c',borderRadius:4}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': ₹'+Math.round(ctx.parsed.y).toLocaleString('en-IN')}}},
+      scales:{
+        y:{ticks:{callback:v=>'₹'+(v/1000)+'K',color:'#7a7268',font:{size:10}},grid:{color:'rgba(0,0,0,0.04)'}},
+        x:{ticks:{color:'#7a7268',font:{size:10}},grid:{display:false}}
+      }
+    }
+  });
+}
+slider.addEventListener('input',updateTCO);
+updateTCO();
+</script>
+</body>
+</html>
